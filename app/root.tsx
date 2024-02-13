@@ -17,6 +17,7 @@ import {
 } from "@remix-run/react";
 import { themeSessionResolver } from "./sessions.server";
 import stylesheet from "~/tailwind.css";
+import { Header } from "~/components/header";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
@@ -55,8 +56,16 @@ export function App() {
         <PreventFlashOnWrongTheme ssrTheme={Boolean(data.theme)} />
         <Links />
       </head>
-      <body>
-        <Outlet />
+      <body className="flex flex-col min-h-screen">
+        <Header />
+        <main className="flex flex-col flex-1 overflow-y-scroll">
+          <section className="flex-1 max-w-4xl w-full mx-auto px-1 py-2">
+            <Outlet />
+          </section>
+          <footer className="max-w-4xl w-full mx-auto p-1">
+            This is footer
+          </footer>
+        </main>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
