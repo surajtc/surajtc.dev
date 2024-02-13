@@ -20,9 +20,7 @@ export default function Index() {
       <section className="flex flex-col items-center justify-center grow">
         <div>
           <h1 className="text-4xl">Stay tuned...</h1>
-          <p className="text-lg font-light pt-2">
-            Big things are happening behind the scenes!
-          </p>
+          <p className="text-lg font-light pt-2">From dev</p>
         </div>
       </section>
       <section className="min-h-64"></section>
