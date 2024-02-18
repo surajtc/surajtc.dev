@@ -8,7 +8,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "~/components/ui/sheet";
-import { Menu, X } from "lucide-react";
+import { GithubIcon, LinkedinIcon, Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
 import { useState } from "react";
 import Logo from "./logo";
@@ -59,6 +59,8 @@ export function Header() {
             <NavLinks onAction={handleClose} />
           </div>
           <ModeToggle />
+          <GithubIcon />
+          <LinkedinIcon />
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger className="block md:hidden">
               <Button variant="ghost" size="icon">
