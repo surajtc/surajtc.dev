@@ -15,8 +15,9 @@ import Logo from "./logo";
 
 function NavLinks({ onAction }: { onAction: () => void }) {
   const links = [
+    { title: "Home", path: "/" },
+    { title: "About Me", path: "/about" },
     { title: "Blogs", path: "/blogs" },
-    { title: "About", path: "/about" },
   ];
 
   const handleClick = () => {
@@ -24,7 +25,7 @@ function NavLinks({ onAction }: { onAction: () => void }) {
   };
 
   return (
-    <nav className="flex flex-col md:flex-row gap-4 text-md">
+    <nav className="flex flex-col md:flex-row gap-4">
       {links.map((link, index) => (
         <NavLink
           to={link.path}
@@ -58,9 +59,15 @@ export function Header() {
           <div className="hidden md:block">
             <NavLinks onAction={handleClose} />
           </div>
+          <Button variant="ghost" size="icon" className="ml-4">
+            <GithubIcon className="h-[1.2rem] w-[1.2rem]" />
+            <span className="sr-only">GitHub</span>
+          </Button>
+          <Button variant="ghost" size="icon" className="mr-4">
+            <LinkedinIcon className="h-[1.2rem] w-[1.2rem]" />
+            <span className="sr-only">LinkedIn</span>
+          </Button>
           <ModeToggle />
-          <GithubIcon />
-          <LinkedinIcon />
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger className="block md:hidden">
               <Button variant="ghost" size="icon">
