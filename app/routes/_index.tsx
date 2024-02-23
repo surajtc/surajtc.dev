@@ -1,18 +1,16 @@
 import type { MetaFunction } from "@remix-run/node";
 import {
   Briefcase,
-  CircleUserRound,
   Github,
   GraduationCap,
   Linkedin,
   Mail,
   MapPin,
   User,
-  UserRound,
 } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { Separator } from "~/components/ui/separator";
-import profile from "~/images/profile.jpg";
+import profile from "~/content/images/profile.jpg";
 
 export const meta: MetaFunction = () => {
   return [
