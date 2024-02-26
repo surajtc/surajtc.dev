@@ -5,7 +5,11 @@ import {
   useTheme,
 } from "remix-themes";
 import { cssBundleHref } from "@remix-run/css-bundle";
-import type { LinksFunction, LoaderFunctionArgs } from "@remix-run/node";
+import type {
+  LinksFunction,
+  LoaderFunctionArgs,
+  MetaFunction,
+} from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -23,6 +27,19 @@ export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
 ];
+
+export const meta: MetaFunction = () => {
+  return [
+    {
+      title: "Suraj T C | Portfolio | Machine Learning",
+    },
+    {
+      name: "description",
+      content:
+        "Welcome! I'm Suraj, a recent machine learning graduate with a background in software development. Join me as I solve problems and explore what excites me.",
+    },
+  ];
+};
 
 // Return the theme from the session storage using the loader
 export async function loader({ request }: LoaderFunctionArgs) {

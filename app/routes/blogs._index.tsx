@@ -1,4 +1,5 @@
 import { Link, useLoaderData } from "@remix-run/react";
+import { Separator } from "~/components/ui/separator";
 import { Frontmatter, getBlogs } from "~/utils/blogs.server";
 
 export async function loader() {
@@ -15,12 +16,14 @@ function BlogItem(props: {
 }) {
   const { item } = props;
   return (
-    <div>
-      <Link to={`${item.slug}`}>
-        <p>{item.frontmatter.meta?.title ?? item.slug} </p>
-      </Link>
-      <p>{item.frontmatter.meta?.description}</p>
-    </div>
+    <Link to={`${item.slug}`} className="group block px-2 py-3">
+      <h3 className="group-hover:underline font-semibold text-lg py-2">
+        {item.frontmatter.title ?? item.slug}
+      </h3>
+      <p className="text-muted-foreground text-sm">{item.frontmatter.date}</p>
+      <p className="py-4">{item.frontmatter.meta?.description}</p>
+      <Separator className="my-2" />
+    </Link>
   );
 }
 
@@ -34,13 +37,13 @@ export default function Blogs() {
 
   return (
     <>
-      Blogs
-      <p>
-        <br /> Learning, failing, iterating: Watch Machine Learning unfold here.
-      </p>
-      {blogs.map((blog) => {
-        return <BlogItem item={blog} key={blog.slug} />;
-      })}
+      {/* <h2 className="font-semibold text-2xl py-2">Blogs</h2>
+      <p>Learning, failing, iterating: Watch Machine Learning unfold here.</p> */}
+      <div className="px-8">
+        {blogs.map((blog) => {
+          return <BlogItem item={blog} key={blog.slug} />;
+        })}
+      </div>
     </>
   );
 }

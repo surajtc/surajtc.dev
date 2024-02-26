@@ -1,14 +1,22 @@
-import { LoaderFunction, LoaderFunctionArgs, json } from "@remix-run/node";
+import {
+  //   LinksFunction,
+  LoaderFunction,
+  LoaderFunctionArgs,
+  json,
+} from "@remix-run/node";
 import { MetaFunction, useLoaderData } from "@remix-run/react";
 import { useMemo } from "react";
 import { Frontmatter, getBlog } from "~/utils/blogs.server";
 import { getMDXComponent } from "mdx-bundler/client/index.js";
+// import styles from "highlight.js/styles/github-dark-dimmed.css";
 
 type LoaderData = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   frontmatter: any;
   code: string;
 };
+
+// export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
 export const loader: LoaderFunction = async ({
   params,
@@ -51,7 +59,9 @@ export default function Blog() {
   return (
     <>
       <BlogHeader frontmatter={frontmatter} />
-      <BlogContent />
+      <article className="prose">
+        <BlogContent />
+      </article>
     </>
   );
 }

@@ -1,4 +1,3 @@
-import type { MetaFunction } from "@remix-run/node";
 import {
   Briefcase,
   Github,
@@ -12,19 +11,6 @@ import { Button } from "~/components/ui/button";
 import { Separator } from "~/components/ui/separator";
 import profile from "~/content/images/profile.jpg";
 
-export const meta: MetaFunction = () => {
-  return [
-    {
-      title: "Suraj T C | Portfolio | Machine Learning",
-    },
-    {
-      name: "description",
-      content:
-        "Welcome! I'm Suraj, a recent machine learning graduate with a background in software development. Join me as I solve problems and explore what excites me.",
-    },
-  ];
-};
-
 export default function Index() {
   return (
     <section className="flex flex-col gap-2 items-center md:flex-row-reverse md:items-start py-8">
@@ -34,26 +20,26 @@ export default function Index() {
           alt="profile"
           className="aspect-square md:min-w-56 max-w-64 object-cover object-center rounded overflow-hidden"
         />
-        <div className="hidden sm:block">
-          <p className="font-semibold flex gap-2 items-center text-lg">
+        <div className="text-xs md:text-base">
+          <p className="font-semibold flex items-center">
             <Button variant="ghost" size="icon" disabled>
               <User className="inline h-[1.2rem] w-[1.2rem]" />
             </Button>
             <span>Suraj T C</span>
           </p>
-          <p className="font-medium flex gap-2 items-center text-sm">
+          <p className="flex items-center">
             <Button variant="ghost" size="icon" disabled>
               <Briefcase className="inline h-[1.2rem] w-[1.2rem]" />
             </Button>
-            <span>Graduate Student, ML Engineer</span>
+            <span>Masters Student, ML Engineer</span>
           </p>
-          <p className="font-medium flex gap-2 items-center  text-sm">
+          <p className="flex items-center">
             <Button variant="ghost" size="icon" disabled>
               <GraduationCap className="inline h-[1.2rem] w-[1.2rem]" />
             </Button>
             <span>University of Maryland</span>
           </p>
-          <p className="font-medium flex gap-2 items-center  text-sm">
+          <p className="flex items-center">
             <Button variant="ghost" size="icon" disabled>
               <MapPin className="inline h-[1.2rem] w-[1.2rem]" />
             </Button>
@@ -86,28 +72,26 @@ export default function Index() {
           </div>
         </div>
       </div>
-      <div className="pt-4 pr-2">
-        <h3 className="font pt-2 text-2xl">Hello!</h3>
-        <h1 className="font-semibold text-5xl pt-2 pb-2">I'm Suraj,</h1>
-        <h2 className=" text-2xl pb-2 text-muted-foreground">
+      <div className="pt-4 pr-2 text-center md:text-left">
+        <h3 className="pt-2">Hello!</h3>
+        <h1 className="font-semibold text-4xl pt-2 pb-2">I'm Suraj,</h1>
+        <h2 className=" text-xl pb-2 text-muted-foreground">
           an aspiring Machine Learning Engineer.
         </h2>
-        <p className="text-xl py-2 ">
+        <p className="py-2 ">
           I enjoy making and breaking things with code during my free time.{" "}
           <br />
           In this corner, I share what I'm working on, what I've learned, and
           even epic failures along the way.
         </p>
-        <p className="text-lg pt-4">
+        <p className=" pt-4">
           Click the button below to say hello or learn more about me.
         </p>
         <div className="py-4">
-          <Button variant="secondary" className="mr-4 font-bold" size="lg">
+          <Button variant="secondary" className="mr-4">
             About Me
           </Button>
-          <Button className="mx-auto font-bold" size="lg">
-            Contact
-          </Button>
+          <Button className="mx-auto">Contact</Button>
         </div>
       </div>
     </section>

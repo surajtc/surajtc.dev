@@ -7,6 +7,9 @@ import { bundleMDX } from "./mdx.server";
 // But that's not especially useful to use
 // So we'll declare our own set of properties that we are going to expect to exist
 export type Frontmatter = {
+  title?: string;
+  date?: string;
+  tags?: string;
   meta?: {
     title?: string;
     description?: string;

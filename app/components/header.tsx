@@ -15,9 +15,10 @@ import Logo from "./logo";
 
 function NavLinks({ onAction }: { onAction: () => void }) {
   const links = [
-    { title: "Home", path: "/" },
-    { title: "About Me", path: "/about" },
-    { title: "Blogs", path: "/blogs" },
+    // { title: "Home", path: "/" },
+    { title: "About", path: "/about" },
+    { title: "Blog", path: "/blogs" },
+    { title: "Contact", path: "/contact" },
   ];
 
   const handleClick = () => {
@@ -25,7 +26,7 @@ function NavLinks({ onAction }: { onAction: () => void }) {
   };
 
   return (
-    <nav className="flex flex-col md:flex-row gap-4">
+    <nav className="flex flex-col md:flex-row gap-4 text-md">
       {links.map((link, index) => (
         <NavLink
           to={link.path}
@@ -52,13 +53,15 @@ export function Header() {
   return (
     <header className="border-b sticky top-0 z-10 bg-inherit">
       <section className="max-w-4xl mx-auto flex justify-between items-center px-1 py-2">
-        <NavLink to="/">
-          <Logo className="h-6 w-6 fill-foreground" />
-        </NavLink>
-        <div className="flex justify-center items-center gap-2">
+        <div className="flex justify-between items-center gap-8">
+          <NavLink to="/">
+            <Logo className="h-6 w-6 fill-foreground" />
+          </NavLink>
           <div className="hidden md:block">
             <NavLinks onAction={handleClose} />
           </div>
+        </div>
+        <div className="flex justify-center items-center gap-2">
           <Button variant="ghost" size="icon" className="ml-4">
             <GithubIcon className="h-[1.2rem] w-[1.2rem]" />
             <span className="sr-only">GitHub</span>
