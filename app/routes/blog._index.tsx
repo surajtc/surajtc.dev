@@ -1,13 +1,14 @@
+// import BlogList from "~/components/blog-list";
+
 import { Link, useLoaderData } from "@remix-run/react";
 import { Separator } from "~/components/ui/separator";
-import { Frontmatter, getBlogs } from "~/utils/blogs.server";
+import { Frontmatter, getBlogs } from "~/utils/blog.server";
 
-export async function loader() {
+export const loader = async () => {
   const blogs = await getBlogs();
   return blogs;
-}
+};
 
-// TODO: move this to components
 function BlogItem(props: {
   item: {
     slug: string;
@@ -18,7 +19,7 @@ function BlogItem(props: {
   return (
     <Link to={`${item.slug}`} className="group block px-2 py-3">
       <h3 className="group-hover:underline font-semibold text-lg py-2">
-        {item.frontmatter.title ?? item.slug}
+        {item.frontmatter.meta?.title ?? item.slug}
       </h3>
       <p className="text-muted-foreground text-sm">{item.frontmatter.date}</p>
       <p className="py-4">{item.frontmatter.meta?.description}</p>
@@ -27,22 +28,27 @@ function BlogItem(props: {
   );
 }
 
-export default function Blogs() {
+function BlogList() {
   const blogs = useLoaderData<
     Array<{
       slug: string;
       frontmatter: Frontmatter;
     }>
   >();
+  return (
+    <>
+      {blogs && blogs.map((blog) => <BlogItem item={blog} key={blog.slug} />)}
+    </>
+  );
+}
 
+export default function Blogs() {
   return (
     <>
       {/* <h2 className="font-semibold text-2xl py-2">Blogs</h2>
       <p>Learning, failing, iterating: Watch Machine Learning unfold here.</p> */}
       <div className="px-8">
-        {blogs.map((blog) => {
-          return <BlogItem item={blog} key={blog.slug} />;
-        })}
+        <BlogList />
       </div>
     </>
   );

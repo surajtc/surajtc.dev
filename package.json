@@ -23,6 +23,7 @@
     "clsx": "^2.1.0",
     "esbuild": "^0.20.1",
     "front-matter": "^4.0.2",
+    "highlight.js": "^11.9.0",
     "isbot": "^4.1.0",
     "lucide-react": "^0.323.0",
     "mdx-bundler": "^10.0.1",

@@ -17,7 +17,7 @@ function NavLinks({ onAction }: { onAction: () => void }) {
   const links = [
     // { title: "Home", path: "/" },
     { title: "About", path: "/about" },
-    { title: "Blog", path: "/blogs" },
+    { title: "Blog", path: "/blog" },
     { title: "Contact", path: "/contact" },
   ];
 
@@ -26,12 +26,12 @@ function NavLinks({ onAction }: { onAction: () => void }) {
   };
 
   return (
-    <nav className="flex flex-col md:flex-row gap-4 text-md">
+    <nav className="flex flex-col md:flex-row gap-4 text-muted-foreground">
       {links.map((link, index) => (
         <NavLink
           to={link.path}
           className={({ isActive, isPending }) =>
-            isActive ? "underline" : isPending ? "bg-red-700" : ""
+            isActive ? "text-foreground" : isPending ? "" : ""
           }
           key={index}
           onClick={handleClick}
@@ -53,20 +53,22 @@ export function Header() {
   return (
     <header className="border-b sticky top-0 z-10 bg-inherit">
       <section className="max-w-4xl mx-auto flex justify-between items-center px-1 py-2">
-        <div className="flex justify-between items-center gap-8">
-          <NavLink to="/">
-            <Logo className="h-6 w-6 fill-foreground" />
+        <div className="flex justify-between items-center gap-6">
+          <NavLink to="/" className="flex gap-1 items-center justify-center">
+            {/* <Logo className="h-6 w-6 fill-foreground" /> */}
+            <p className="font-bold">surajtc.dev</p>
           </NavLink>
           <div className="hidden md:block">
             <NavLinks onAction={handleClose} />
           </div>
         </div>
-        <div className="flex justify-center items-center gap-2">
-          <Button variant="ghost" size="icon" className="ml-4">
+
+        <div className="flex justify-center items-center">
+          <Button variant="ghost" size="icon">
             <GithubIcon className="h-[1.2rem] w-[1.2rem]" />
             <span className="sr-only">GitHub</span>
           </Button>
-          <Button variant="ghost" size="icon" className="mr-4">
+          <Button variant="ghost" size="icon">
             <LinkedinIcon className="h-[1.2rem] w-[1.2rem]" />
             <span className="sr-only">LinkedIn</span>
           </Button>

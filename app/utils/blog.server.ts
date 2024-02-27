@@ -3,11 +3,14 @@ import parseFrontMatter from "front-matter";
 import { readFile, readdir } from "./fs.server";
 import { bundleMDX } from "./mdx.server";
 
+import rehypeHighlight from "rehype-highlight";
+import remarkGfm from "remark-gfm";
+
 // The frontmatter can be any set of key values
 // But that's not especially useful to use
 // So we'll declare our own set of properties that we are going to expect to exist
 export type Frontmatter = {
-  title?: string;
+  author?: string;
   date?: string;
   tags?: string;
   meta?: {
@@ -26,19 +29,13 @@ export async function getBlog(slug: string) {
     process.cwd(),
     "app",
     "content",
-    "blogs",
+    "blog",
     slug + ".mdx"
   );
 
   const [source] = await Promise.all([readFile(filePath, "utf-8")]);
 
-  // Dyamically import all the rehype/remark plugins we are using
-  const [rehypeHighlight, remarkGfm] = await Promise.all([
-    import("rehype-highlight").then((mod) => mod.default),
-    import("remark-gfm").then((mod) => mod.default),
-  ]);
-
-  const post = await bundleMDX<Frontmatter>({
+  const blog = await bundleMDX<Frontmatter>({
     source,
     cwd: process.cwd(),
 
@@ -64,9 +61,9 @@ export async function getBlog(slug: string) {
   });
 
   return {
-    ...post,
+    ...blog,
     frontmatter: {
-      ...post.frontmatter,
+      ...blog.frontmatter,
     },
   };
 }
@@ -76,14 +73,14 @@ export async function getBlog(slug: string) {
  * @returns
  */
 export async function getBlogs() {
-  const filePath = path.join(process.cwd(), "app", "content", "blogs");
+  const filePath = path.join(process.cwd(), "app", "content", "blog");
 
-  const postsPath = await readdir(filePath, {
+  const blogsPath = await readdir(filePath, {
     withFileTypes: true,
   });
 
-  const posts = await Promise.all(
-    postsPath.map(async (dirent) => {
+  const blogs = await Promise.all(
+    blogsPath.map(async (dirent) => {
       const fPath = path.join(filePath, dirent.name);
       const [file] = await Promise.all([readFile(fPath)]);
       const frontmatter = parseFrontMatter(file.toString());
@@ -97,5 +94,6 @@ export async function getBlogs() {
       };
     })
   );
-  return posts;
+
+  return blogs;
 }

@@ -41,6 +41,9 @@ dependencies:
   front-matter:
     specifier: ^4.0.2
     version: 4.0.2
+  highlight.js:
+    specifier: ^11.9.0
+    version: 11.9.0
   isbot:
     specifier: ^4.1.0
     version: 4.4.0
