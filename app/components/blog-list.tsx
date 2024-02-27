@@ -1,42 +1,33 @@
-import { Link, useLoaderData } from "@remix-run/react";
-import { Frontmatter, getBlogs } from "~/utils/blog.server";
+import { Link } from "@remix-run/react";
+import { Blogs, Frontmatter } from "~/utils/blog.server";
 import { Separator } from "./ui/separator";
 
-export async function loader() {
-  const blogs = await getBlogs();
-  return blogs;
+interface Props {
+  blogs: Blogs;
 }
 
-function BlogItem(props: {
-  item: {
-    slug: string;
-    frontmatter: Frontmatter;
-  };
-}) {
-  const { item } = props;
+export type Blog = {
+  slug: string;
+  frontmatter: Frontmatter;
+};
+
+function BlogItem({ blog }: { blog: Blog }) {
   return (
-    <Link to={`${item.slug}`} className="group block px-2 py-3">
+    <Link to={`/blog/${blog.slug}`} className="group block px-2 py-3">
       <h3 className="group-hover:underline font-semibold text-lg py-2">
-        {item.frontmatter.meta?.title ?? item.slug}
+        {blog.frontmatter.meta?.title ?? blog.slug}
       </h3>
-      <p className="text-muted-foreground text-sm">{item.frontmatter.date}</p>
-      <p className="py-4">{item.frontmatter.meta?.description}</p>
+      <p className="text-muted-foreground text-sm">{blog.frontmatter.date}</p>
+      <p className="py-4">{blog.frontmatter.meta?.description}</p>
       <Separator className="my-2" />
     </Link>
   );
 }
 
-export default function BlogList() {
-  const blogs = useLoaderData<
-    Array<{
-      slug: string;
-      frontmatter: Frontmatter;
-    }>
-  >();
-  console.log(blogs);
+export default function BlogList({ blogs }: Props) {
   return (
     <>
-      {blogs && blogs.map((blog) => <BlogItem item={blog} key={blog.slug} />)}
+      {blogs && blogs.map((blog) => <BlogItem blog={blog} key={blog.slug} />)}
     </>
   );
 }

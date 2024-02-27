@@ -76,7 +76,7 @@ export function App() {
       <body className="flex flex-col min-h-screen">
         <Header />
         <main className="flex flex-col flex-1 overflow-y-scroll">
-          <section className="flex-1 max-w-4xl w-full mx-auto px-1 py-2">
+          <section className="flex-1 max-w-4xl w-full mx-auto px-1 pt-3">
             <Outlet />
           </section>
           <footer className="max-w-4xl w-full mx-auto p-1">

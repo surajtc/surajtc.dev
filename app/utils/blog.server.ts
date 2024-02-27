@@ -19,6 +19,11 @@ export type Frontmatter = {
   };
 };
 
+export type Blogs = {
+  slug: string;
+  frontmatter: Frontmatter;
+}[];
+
 /**
  * Get the React component, and frontmatter JSON for a given slug
  * @param slug
@@ -72,15 +77,20 @@ export async function getBlog(slug: string) {
  * Get all frontmatter for all posts
  * @returns
  */
-export async function getBlogs() {
+export async function getBlogs(numOfFeatured?: number) {
   const filePath = path.join(process.cwd(), "app", "content", "blog");
 
   const blogsPath = await readdir(filePath, {
     withFileTypes: true,
   });
 
+  const blogsFeatured =
+    numOfFeatured && numOfFeatured <= blogsPath.length
+      ? blogsPath.slice(-numOfFeatured)
+      : blogsPath;
+
   const blogs = await Promise.all(
-    blogsPath.map(async (dirent) => {
+    blogsFeatured.map(async (dirent) => {
       const fPath = path.join(filePath, dirent.name);
       const [file] = await Promise.all([readFile(fPath)]);
       const frontmatter = parseFrontMatter(file.toString());
@@ -95,5 +105,5 @@ export async function getBlogs() {
     })
   );
 
-  return blogs;
+  return blogs.reverse();
 }
