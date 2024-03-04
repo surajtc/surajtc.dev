@@ -53,10 +53,10 @@ export function Header() {
   return (
     <header className="border-b sticky top-0 z-10 bg-background">
       <section className="max-w-4xl mx-auto flex justify-between items-center px-1 py-2">
-        <div className="flex justify-between items-center gap-6">
-          <NavLink to="/" className="flex gap-1 items-center justify-center">
-            {/* <Logo className="h-6 w-6 fill-foreground" /> */}
-            <p className="font-bold">surajtc.dev</p>
+        <div className="flex justify-between items-center gap-4">
+          <NavLink to="/" className="flex gap-0 items-start">
+            <Logo className="h-6 w-6 fill-foreground" />
+            {/* <p className="font-semibold">surajtc.dev</p> */}
           </NavLink>
           <div className="hidden md:block">
             <NavLinks onAction={handleClose} />

@@ -22,6 +22,7 @@ import {
 import { themeSessionResolver } from "./sessions.server";
 import stylesheet from "~/tailwind.css";
 import { Header } from "~/components/header";
+import { getBlog, getBlogs } from "./utils/blog.server";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
@@ -44,6 +45,11 @@ export const meta: MetaFunction = () => {
 // Return the theme from the session storage using the loader
 export async function loader({ request }: LoaderFunctionArgs) {
   const { getTheme } = await themeSessionResolver(request);
+  const blogs = await getBlogs();
+  const preLoad = await getBlog(blogs[0].slug);
+
+  console.log(preLoad.frontmatter);
+
   return {
     theme: getTheme(),
   };
