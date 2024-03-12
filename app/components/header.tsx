@@ -53,10 +53,10 @@ export function Header() {
   return (
     <header className="border-b sticky top-0 z-10 bg-background">
       <section className="max-w-4xl mx-auto flex justify-between items-center px-1 py-2">
-        <div className="flex justify-between items-center gap-4">
-          <NavLink to="/" className="flex gap-0 items-start">
-            <Logo className="h-6 w-6 fill-foreground" />
-            {/* <p className="font-semibold">surajtc.dev</p> */}
+        <div className="flex justify-between items-center gap-6">
+          <NavLink to="/">
+            <Logo className="h-[1.5rem] w-fit fill-foreground inline-block pb-[0.15rem] pl-2 md:pl-0" />
+            {/* <p className="inline-block font-bold">surajtc.dev</p> */}
           </NavLink>
           <div className="hidden md:block">
             <NavLinks onAction={handleClose} />
@@ -83,7 +83,8 @@ export function Header() {
               <SheetHeader>
                 <SheetTitle className="flex justify-between items-center mb-4">
                   <NavLink to="/" onClick={handleClose}>
-                    <Logo className="h-6 w-6 fill-foreground" />
+                    <Logo className="h-[1.5rem] w-fit fill-foreground inline-block pb-[0.15rem]" />
+                    {/* <p className="inline-block font-bold">surajtc.dev</p> */}
                   </NavLink>
                   <SheetClose>
                     <X className="h-4 w-4" />

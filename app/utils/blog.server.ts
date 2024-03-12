@@ -24,6 +24,12 @@ export type Blogs = {
   frontmatter: Frontmatter;
 }[];
 
+export async function startServer() {
+  return {
+    status: "server started",
+  };
+}
+
 /**
  * Get the React component, and frontmatter JSON for a given slug
  * @param slug

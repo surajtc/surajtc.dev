@@ -12,13 +12,23 @@ export type Blog = {
 };
 
 function BlogItem({ blog }: { blog: Blog }) {
+  const date = new Date(blog.frontmatter.date || "");
+
   return (
-    <Link to={`/blog/${blog.slug}`} className="group block px-2 py-3">
+    <Link to={`/blog/${blog.slug}`} className="group block px-2 md:px-0 py-3">
       <h3 className="group-hover:underline font-semibold text-lg py-2">
         {blog.frontmatter.meta?.title ?? blog.slug}
       </h3>
-      <p className="text-muted-foreground text-sm">{blog.frontmatter.date}</p>
-      <p className="py-4">{blog.frontmatter.meta?.description}</p>
+      <p className="text-muted-foreground text-sm">
+        {date.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "2-digit",
+        })}
+      </p>
+      <p className="py-4 prose dark:prose-invert min-w-full">
+        {blog.frontmatter.meta?.description}
+      </p>
       <Separator className="my-2" />
     </Link>
   );

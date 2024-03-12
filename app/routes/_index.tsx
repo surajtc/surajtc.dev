@@ -98,16 +98,18 @@ export default function Index() {
           </div>
         </section>
 
-        <section className="">
-          <h3 className="text-2xl font-bold pt-4">Recent Blogs</h3>
-          <BlogList blogs={featuredBlogs} />
-          <Link
-            to="/blog"
-            className="font-bold text-sm text-center w-full block"
-          >
-            See all
-          </Link>
-        </section>
+        {featuredBlogs.length && (
+          <section className="">
+            <h3 className="text-2xl font-bold pt-4">Recent Blogs</h3>
+            <BlogList blogs={featuredBlogs} />
+            <Link
+              to="/blog"
+              className="font-bold text-sm text-center w-full block"
+            >
+              See all
+            </Link>
+          </section>
+        )}
       </div>
     </div>
   );
