@@ -47,9 +47,21 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 
 function BlogHeader(props: { frontmatter: Frontmatter }) {
   const { frontmatter } = props;
+  const date = new Date(frontmatter.date || "");
 
   // We can implement whatever we want here
-  return <>{JSON.stringify(frontmatter, null, 2)}</>;
+  return (
+    <>
+      <h1 className="font-bold text-2xl py-2">{frontmatter.meta?.title}</h1>
+      <p className="text-muted-foreground text-sm pb-6">
+        {date.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "2-digit",
+        })}
+      </p>
+    </>
+  );
 }
 
 export default function Blog() {
