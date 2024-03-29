@@ -20,12 +20,14 @@ import {
   ScrollRestoration,
   json,
   useLoaderData,
+  useLocation,
 } from "@remix-run/react";
 import { themeSessionResolver } from "./sessions.server";
 import stylesheet from "~/tailwind.css";
 import { Header } from "~/components/header";
 import { useEffect } from "react";
 import { Toaster, toast as notify } from "sonner";
+import * as gtag from "~/utils/gtags.client";
 
 type ToasterProps = React.ComponentProps<typeof Toaster>;
 
@@ -54,6 +56,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
   return json(
     {
+      gaTrackingId: process.env.GA_TRACKING_ID,
       theme: getTheme(),
       toast,
     },
@@ -86,10 +89,17 @@ export default function AppWithProviders() {
 }
 
 export function App() {
+  const location = useLocation();
   const year = new Date().getFullYear();
   const data = useLoaderData<typeof loader>();
   const [theme] = useTheme();
-  console.log("HERE", theme);
+
+  useEffect(() => {
+    if (data.gaTrackingId?.length) {
+      gtag.pageview(location.pathname, data.gaTrackingId);
+    }
+  }, [location, data.gaTrackingId]);
+
   return (
     <html lang="en" className={clsx(theme)}>
       <head>
@@ -100,6 +110,30 @@ export function App() {
         <Links />
       </head>
       <body className="flex flex-col min-h-screen">
+        {process.env.NODE_ENV === "development" || !data.gaTrackingId ? null : (
+          <>
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${data.gaTrackingId}`}
+            />
+            <script
+              async
+              id="gtag-init"
+              dangerouslySetInnerHTML={{
+                __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', '${data.gaTrackingId}', {
+                  page_path: window.location.pathname,
+                });
+              `,
+              }}
+            />
+          </>
+        )}
+
         <Header />
         <main className="flex flex-col flex-1 overflow-y-scroll">
           <section className="flex-1 max-w-4xl w-full mx-auto px-1 pt-3">

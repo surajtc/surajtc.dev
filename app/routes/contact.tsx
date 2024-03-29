@@ -5,6 +5,7 @@ import { jsonWithError, jsonWithSuccess } from "remix-toast";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Textarea } from "~/components/ui/textarea";
+import * as gtag from "~/utils/gtags.client";
 
 export default function Contact() {
   const actionData = useActionData<typeof action>();
@@ -99,6 +100,12 @@ export async function action({ request }: ActionFunctionArgs) {
         "Content-Type": "application/x-www-form-urlencoded", // Set the Content-Type header
       },
       body: encoded,
+    });
+
+    gtag.event({
+      action: "submit_form",
+      category: "Contact",
+      label: name,
     });
 
     if (response.ok) {

@@ -46,16 +46,14 @@ export default function Index() {
         </div>
         <div className="flex flex-col justify-between text-xs md:text-base whitespace-nowrap gap-1 md:gap-4">
           {bioData.map((item, idx) => (
-            <p key={idx} className="flex">
-              <div className="px-2 ">
+            <div key={idx} className="flex">
+              <span className="px-2 ">
                 {
                   <item.icon className="inline h-[1rem] w-[1rem] md:h-[1.2rem] md:w-[1.2rem] text-muted-foreground" />
                 }
-              </div>
-              <span className={idx == 0 ? "font-semibold" : ""}>
-                {item.title}
               </span>
-            </p>
+              <p className={idx == 0 ? "font-semibold" : ""}>{item.title}</p>
+            </div>
           ))}
           <div>
             <Separator className="mb-2" />
