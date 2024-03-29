@@ -1,7 +1,7 @@
 export default function About() {
   return (
     <>
-      <h2 className="font-semibold text-2xl pb-2">About Me</h2>
+      {/* <h2 className="font-semibold text-2xl pb-2">About Me</h2> */}
       <p>
         {
           "Hello again! I'm Suraj TC, a passionate individual deeply immersed in the realms of machine learning and data science. My journey has been one of continuous learning and growth, shaped by both academic pursuits and real-world experiences."

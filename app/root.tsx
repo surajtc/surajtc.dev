@@ -4,6 +4,7 @@ import {
   ThemeProvider,
   useTheme,
 } from "remix-themes";
+import { getToast } from "remix-toast";
 import { cssBundleHref } from "@remix-run/css-bundle";
 import type {
   LinksFunction,
@@ -17,11 +18,16 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  json,
   useLoaderData,
 } from "@remix-run/react";
 import { themeSessionResolver } from "./sessions.server";
 import stylesheet from "~/tailwind.css";
 import { Header } from "~/components/header";
+import { useEffect } from "react";
+import { Toaster, toast as notify } from "sonner";
+
+type ToasterProps = React.ComponentProps<typeof Toaster>;
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
@@ -44,19 +50,36 @@ export const meta: MetaFunction = () => {
 // Return the theme from the session storage using the loader
 export async function loader({ request }: LoaderFunctionArgs) {
   const { getTheme } = await themeSessionResolver(request);
+  const { toast, headers } = await getToast(request);
 
-  return {
-    theme: getTheme(),
-  };
+  return json(
+    {
+      theme: getTheme(),
+      toast,
+    },
+    { headers }
+  );
 }
 
 // Wrap your app with ThemeProvider.
 // `specifiedTheme` is the stored theme in the session storage.
 // `themeAction` is the action name that's used to change the theme in the session storage.
 export default function AppWithProviders() {
-  const data = useLoaderData<typeof loader>();
+  const { theme, toast } = useLoaderData<typeof loader>();
+
+  useEffect(() => {
+    if (toast) {
+      if (toast?.type === "error") {
+        notify.error(toast.message);
+      }
+      if (toast?.type === "success") {
+        notify.success(toast.message);
+      }
+    }
+  }, [toast]);
+
   return (
-    <ThemeProvider specifiedTheme={data.theme} themeAction="/action/set-theme">
+    <ThemeProvider specifiedTheme={theme} themeAction="/action/set-theme">
       <App />
     </ThemeProvider>
   );
@@ -66,6 +89,7 @@ export function App() {
   const year = new Date().getFullYear();
   const data = useLoaderData<typeof loader>();
   const [theme] = useTheme();
+  console.log("HERE", theme);
   return (
     <html lang="en" className={clsx(theme)}>
       <head>
@@ -91,6 +115,21 @@ export function App() {
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
+        <Toaster
+          theme={theme as ToasterProps["theme"]}
+          className="toaster group"
+          toastOptions={{
+            classNames: {
+              toast:
+                "group toast group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border group-[.toaster]:shadow-lg",
+              description: "group-[.toast]:text-muted-foreground",
+              actionButton:
+                "group-[.toast]:bg-primary group-[.toast]:text-primary-foreground",
+              cancelButton:
+                "group-[.toast]:bg-muted group-[.toast]:text-muted-foreground",
+            },
+          }}
+        />
       </body>
     </html>
   );

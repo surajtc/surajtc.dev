@@ -9,7 +9,7 @@ import {
   SheetTrigger,
 } from "~/components/ui/sheet";
 import { GithubIcon, LinkedinIcon, Menu, X } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button, buttonVariants } from "./ui/button";
 import { useState } from "react";
 import Logo from "./logo";
 
@@ -75,9 +75,11 @@ export function Header() {
           <ModeToggle />
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger className="block md:hidden">
-              <Button variant="ghost" size="icon">
+              <div
+                className={buttonVariants({ variant: "ghost", size: "icon" })}
+              >
                 <Menu />
-              </Button>
+              </div>
             </SheetTrigger>
             <SheetContent side="left" className="block md:hidden">
               <SheetHeader>
