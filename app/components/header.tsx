@@ -1,15 +1,16 @@
 import { ModeToggle } from "./mode-toggle";
-import { NavLink } from "@remix-run/react";
+import { Link, NavLink } from "@remix-run/react";
 import {
   Sheet,
   SheetClose,
   SheetContent,
+  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "~/components/ui/sheet";
-import { GithubIcon, LinkedinIcon, Menu, X } from "lucide-react";
-import { Button, buttonVariants } from "./ui/button";
+import { Github, Linkedin, Mail, Menu, X } from "lucide-react";
+import { buttonVariants } from "./ui/button";
 import { useState } from "react";
 import Logo from "./logo";
 
@@ -50,6 +51,12 @@ export function Header() {
     setIsOpen(false);
   };
 
+  const socialLinks = [
+    { link: "mailto:mail.surajtc@gmail.com", icon: Mail },
+    { link: "https://www.linkedin.com/in/surajtc/", icon: Linkedin },
+    { link: "https://github.com/surajtc", icon: Github },
+  ];
+
   return (
     <header className="border-b sticky top-0 z-10 bg-background">
       <section className="max-w-4xl mx-auto flex justify-between items-center px-1 py-2">
@@ -64,14 +71,19 @@ export function Header() {
         </div>
 
         <div className="flex justify-center items-center">
-          <Button variant="ghost" size="icon">
-            <GithubIcon className="h-[1.2rem] w-[1.2rem]" />
-            <span className="sr-only">GitHub</span>
-          </Button>
-          <Button variant="ghost" size="icon">
-            <LinkedinIcon className="h-[1.2rem] w-[1.2rem]" />
-            <span className="sr-only">LinkedIn</span>
-          </Button>
+          <div className="hidden md:block">
+            {socialLinks.map((item, idx) => (
+              <Link
+                key={idx}
+                to={item.link}
+                className={buttonVariants({ variant: "ghost", size: "icon" })}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <item.icon className="inline h-[1.2rem] w-[1.2rem]" />
+              </Link>
+            ))}
+          </div>
           <ModeToggle />
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger className="block md:hidden">
@@ -95,7 +107,27 @@ export function Header() {
                 </SheetTitle>
               </SheetHeader>
 
-              <NavLinks onAction={handleClose} />
+              <div className="flex flex-col h-full justify-between pb-8 pt-4">
+                <div className="text-xl md:text-md">
+                  <NavLinks onAction={handleClose} />
+                </div>
+                <div>
+                  {socialLinks.map((item, idx) => (
+                    <Link
+                      key={idx}
+                      to={item.link}
+                      className={buttonVariants({
+                        variant: "ghost",
+                        size: "icon",
+                      })}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <item.icon className="inline h-[1.2rem] w-[1.2rem]" />
+                    </Link>
+                  ))}
+                </div>
+              </div>
             </SheetContent>
           </Sheet>
         </div>
