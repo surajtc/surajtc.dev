@@ -24,7 +24,7 @@ export default function Index() {
 
   const bioData = [
     { title: "Suraj T C", icon: User },
-    { title: "Masters Student, ML Engineer", icon: Briefcase },
+    { title: "Masters Student, CS Engineer", icon: Briefcase },
     { title: "University of Maryland", icon: GraduationCap },
     { title: "College Park, MD", icon: MapPin },
   ];
@@ -77,31 +77,29 @@ export default function Index() {
       <div className="flex-1">
         <section className="md:row-start-1">
           <h3 className="pt-4">{"Hello!"}</h3>
-          <h1 className="font-semibold text-4xl pt-2 pb-2">{"I'm Suraj,"}</h1>
+          <h1 className="font-semibold text-4xl pt-4 pb-2">{"I'm Suraj,"}</h1>
           <h2 className=" text-xl pb-2 text-muted-foreground">
-            {"an aspiring Machine Learning Engineer."}
+            {"aspiring Software Engineer."}
           </h2>
-          <p className="py-2 ">
-            {
-              "I enjoy making and breaking things with code during my free time."
-            }
+          <p className="py-4">
+            {"I enjoy making and breaking things with code."}
             <br />
             {
-              "In this corner, I share what I'm working on, what I've learned, and even epic failures along the way."
+              "In this space, I share what I'm working on, what I've learned, and even epic failures along the way."
             }
           </p>
-          <p className=" pt-8">
-            {"Click the button below to learn more about me or say hello."}
+          <p className="pt-2">
+            {"Click below to learn more about me or say hello."}
           </p>
           <div className="pt-4 pb-16 flex gap-4">
             <Link to="/about" className={buttonVariants()}>
-              About Me
+              <span className="md:w-20 text-center">About Me</span>
             </Link>
             <Link
               to="/contact"
               className={buttonVariants({ variant: "secondary" })}
             >
-              Contact
+              <span className="md:w-20 text-center">Contact</span>
             </Link>
           </div>
         </section>
