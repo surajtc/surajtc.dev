@@ -60,9 +60,9 @@ export function Header() {
   return (
     <header className="border-b sticky top-0 z-10 bg-background">
       <section className="max-w-4xl mx-auto flex justify-between items-center px-1 py-2">
-        <div className="flex justify-between items-center gap-6">
+        <div className="flex justify-between items-center gap-4">
           <NavLink to="/">
-            <Logo className="h-[1.5rem] w-fit fill-foreground inline-block pb-[0.15rem] pl-2 md:pl-0" />
+            <Logo className="h-[1.5rem] w-[1.5rem] fill-foreground inline-block pb-[0.15rem] pl-2 md:pl-0" />
             {/* <p className="inline-block font-bold">surajtc.dev</p> */}
           </NavLink>
           <div className="hidden md:block">
