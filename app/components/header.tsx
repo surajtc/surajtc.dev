@@ -9,8 +9,9 @@ import {
   SheetTrigger,
 } from "~/components/ui/sheet";
 import { Github, Linkedin, Mail, Menu, X } from "lucide-react";
+import { cn } from "~/lib/utils";
 import { buttonVariants } from "./ui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Logo from "./logo";
 
 function NavLinks({ onAction }: { onAction: () => void }) {
@@ -45,9 +46,15 @@ function NavLinks({ onAction }: { onAction: () => void }) {
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const handleClose = () => {
     setIsOpen(false);
+  };
+
+  const handleScroll = () => {
+    if (window.scrollY >= 120) setIsScrolled(true);
+    else setIsScrolled(false);
   };
 
   const socialLinks = [
@@ -56,9 +63,19 @@ export function Header() {
     { link: "https://github.com/surajtc", icon: Github },
   ];
 
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  });
+
   return (
-    <header className="border-b sticky top-0 z-10 bg-background">
-      <section className="max-w-4xl mx-auto flex justify-between items-center px-1 py-2">
+    <header
+      className={cn(
+        "transition-all sticky top-0 z-10 bg-background/30 backdrop-blur-md border-b"
+      )}
+    >
+      <section className="transition-all max-w-4xl mx-auto flex justify-between items-center px-1 py-2">
         <div className="flex justify-between items-center gap-6">
           <NavLink to="/">
             <Logo className="h-[1.5rem] w-[1.5rem] fill-foreground inline-block pb-[0.15rem] pl-2 md:pl-0" />
