@@ -23,8 +23,9 @@ export default function Index() {
   const featuredBlogs = useLoaderData<typeof loader>();
 
   const bioData = [
-    { title: "Suraj T C", icon: User },
-    { title: "Masters Student, CS Engineer", icon: Briefcase },
+    // { title: "Suraj T C", icon: User },
+    { title: "Intern at CATT Lab", icon: Briefcase },
+    { title: "CATT Lab", icon: Briefcase },
     { title: "University of Maryland", icon: GraduationCap },
     { title: "College Park, MD", icon: MapPin },
   ];
@@ -34,20 +35,65 @@ export default function Index() {
     { link: "https://www.linkedin.com/in/surajtc/", icon: Linkedin },
     { link: "https://github.com/surajtc", icon: Github },
   ];
+
   return (
-    <div className="flex flex-col md:flex-row-reverse gap-x-12 pt-8 px-2 md:px-0">
-      <section className="flex gap-2 md:flex-col w-full md:w-min">
-        <div className="min-w-12 max-w-64">
+    <div className="pt-4 px-2 md:px-0">
+      <section className="flex gap-2 border p-4 rounded-md">
+        <div className="aspect-square flex-1 min-h-40">
           <img
             src={profile}
             alt="profile"
-            className="object-cover object-center rounded overflow-hidden"
+            className="object-cover object-center rounded-full overflow-hidden"
           />
         </div>
-        <div className="flex flex-col justify-between text-xs md:text-base whitespace-nowrap gap-1 md:gap-4">
+        <div className="pl-3 my-auto">
+          <h1 className="pl-2 font-semibold text-3xl">{"Suraj T C"}</h1>
+          <h1 className="py-2 pl-2 text-muted-foreground">
+            {
+              "Machine learning graduate with 2 years of industry experience as Software Engineer who enjoys solving real-world problems"
+            }
+          </h1>
+          <div className="flex flex-col justify-between text-xs md:text-base whitespace-nowrap gap-1">
+            {/* {bioData.map((item, idx) => (
+            <div key={idx} className="flex">
+              <span className="px-4">
+                {
+                  <item.icon className="inline h-[1rem] w-[1rem] md:h-[1.2rem] md:w-[1.2rem] text-muted-foreground" />
+                }
+              </span>
+              <p className={idx == 0 ? "font-semibold" : ""}>{item.title}</p>
+            </div>
+          ))} */}
+            <div>
+              {/* <Separator className="mb-3" /> */}
+
+              <div className="flex gap-3">
+                {socialLinks.map((item, idx) => (
+                  <Link
+                    key={idx}
+                    to={item.link}
+                    className={buttonVariants({
+                      variant: "ghost",
+                      size: "icon",
+                    })}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <item.icon className="inline h-[1.2rem] w-[1.2rem]" />
+                  </Link>
+                ))}
+                {/* <Link to="/contact" className={buttonVariants()}>
+                  <span className="md:w-20 text-center">Contact</span>
+                </Link> */}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* <div className="flex flex-col justify-between text-xs md:text-base whitespace-nowrap gap-1 p-3 pt-8">
           {bioData.map((item, idx) => (
             <div key={idx} className="flex">
-              <span className="px-2 ">
+              <span className="px-4">
                 {
                   <item.icon className="inline h-[1rem] w-[1rem] md:h-[1.2rem] md:w-[1.2rem] text-muted-foreground" />
                 }
@@ -56,9 +102,9 @@ export default function Index() {
             </div>
           ))}
           <div>
-            <Separator className="mb-2" />
+            <Separator className="mb-3" />
 
-            <div className="flex gap-2">
+            <div className="flex gap-3">
               {socialLinks.map((item, idx) => (
                 <Link
                   key={idx}
@@ -70,12 +116,58 @@ export default function Index() {
                   <item.icon className="inline h-[1.2rem] w-[1.2rem]" />
                 </Link>
               ))}
+              <Link to="/contact" className={buttonVariants()}>
+                <span className="md:w-20 text-center">Contact</span>
+              </Link>
             </div>
+          </div>
+        </div> */}
+      </section>
+      {/* <Separator className="my-4" /> */}
+
+      <section className="flex justify-between my-2 gap-2">
+        <div className="border rounded-md p-2 flex-1 pl-5">
+          <h3 className="text-2xl font-bold pb-3">Education</h3>
+          <p className="font-semibold ">Master's in Machine Learning</p>
+          <p className="text-muted-foreground">University of Marylad, 2024</p>
+          <p className="text-muted-foreground">College Park, USA</p>
+          <p className="font-semibold pt-2">Bachelors's in Computer Science</p>
+          <p className="text-muted-foreground">
+            Visveswaraya Technological Univerisy, 2021
+          </p>
+          <p className="text-muted-foreground">Mysore, India</p>
+        </div>
+        <div className="p-2 pt-8 border rounded-md max-w-[40%]">
+          {bioData.map((item, idx) => (
+            <div key={idx} className="flex py-1 pr-5">
+              <span className="px-4">
+                {
+                  <item.icon className="inline h-[1rem] w-[1rem] md:h-[1.2rem] md:w-[1.2rem] text-muted-foreground" />
+                }
+              </span>
+              <p className={idx == 0 ? "font-semibold" : ""}>{item.title}</p>
+            </div>
+          ))}
+          <h3 className="hidden text-2xl font-bold py-3 pl-4">Interests</h3>
+          <div className="hidden gap-2 flex-wrap pl-4 pb-4">
+            <p className="bg-muted-foreground text-background px-2 p-[1px] text-xs rounded-full font-semibold">
+              Deep Learning
+            </p>
+            <p className="bg-muted-foreground text-background px-2 p-[1px] text-xs rounded-full font-semibold">
+              NLP
+            </p>
+            <p className="bg-muted-foreground text-background px-2 p-[1px] text-xs rounded-full font-semibold">
+              Artificical Intelligence
+            </p>
+            <p className="bg-muted-foreground text-background px-2 p-[1px] text-xs rounded-full font-semibold">
+              Data Analysis
+            </p>
           </div>
         </div>
       </section>
+
       <div className="flex-1">
-        <section className="md:row-start-1">
+        {/* <section className="md:row-start-1">
           <h3 className="pt-4">{"Hello!"}</h3>
           <h1 className="font-semibold text-4xl pt-4 pb-2">{"I'm Suraj,"}</h1>
           <h2 className=" text-xl pb-2 text-muted-foreground">
@@ -102,7 +194,15 @@ export default function Index() {
               <span className="md:w-20 text-center">Contact</span>
             </Link>
           </div>
-        </section>
+        </section> */}
+        <div className="">
+          <h3 className="text-2xl font-bold pt-4">About</h3>
+          <p>
+            Hi, I'm Suraj, aspiring Software Engineer. I enjoy making and
+            breaking things with code. In this space, I share what I'm working
+            on, what I've learned, and even epic failures along the way.
+          </p>
+        </div>
 
         {featuredBlogs.length && (
           <section className="">
