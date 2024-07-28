@@ -72,13 +72,13 @@ export function Header() {
   return (
     <header
       className={cn(
-        "transition-all sticky top-0 z-10 bg-background/30 backdrop-blur-md border-b"
+        "transition-all sticky top-0 z-10 bg-background/50 backdrop-blur-md border-b"
       )}
     >
       <section className="transition-all max-w-3xl mx-auto flex justify-between items-center px-1 py-2">
         <div className="flex justify-between items-center gap-6">
           <NavLink to="/">
-            <Logo className="h-[1.5rem] w-[1.5rem] fill-foreground inline-block pb-[0.15rem] pl-2 md:pl-0" />
+            {/* <Logo className="h-[1.5rem] w-[1.5rem] fill-foreground inline-block pb-[0.15rem] pl-2 md:pl-0" /> */}
             {/* <p className="inline-block font-bold">surajtc.dev</p> */}
           </NavLink>
           <div className="hidden md:block">
@@ -101,8 +101,11 @@ export function Header() {
             ))} */}
           </div>
           <ModeToggle />
-          <Link to="/contact" className={buttonVariants()}>
-            <span className="md:w-20 text-center">Contact</span>
+          <Link
+            to="/contact"
+            className={buttonVariants({ variant: "secondary" })}
+          >
+            <span className="px-1">Contact</span>
           </Link>
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger className="block md:hidden">
