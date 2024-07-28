@@ -33,6 +33,8 @@ type ToasterProps = React.ComponentProps<typeof Toaster>;
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
+  { rel: "preconnect", href: "https://rsms.me/" },
+  { rel: "stylesheet", href: "https://rsms.me/inter/inter.css" },
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
 ];
 
@@ -136,10 +138,10 @@ export function App() {
 
         <Header />
         <main className="flex flex-col flex-1 overflow-y-scroll">
-          <section className="flex-1 max-w-4xl w-full mx-auto px-1 pt-3">
+          <section className="flex-1 max-w-3xl w-full mx-auto px-1 pt-3">
             <Outlet />
           </section>
-          <footer className="max-w-4xl w-full mx-auto p-1 pt-8">
+          <footer className="max-w-3xl w-full mx-auto p-1 pt-8">
             <div className="flex justify-between text-sm text-muted-foreground">
               <span>surajtc.dev</span>
               <span>&copy; {year}</span>
