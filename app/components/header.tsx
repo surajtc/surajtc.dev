@@ -16,10 +16,9 @@ import Logo from "./logo";
 
 function NavLinks({ onAction }: { onAction: () => void }) {
   const links = [
-    // { title: "Home", path: "/" },
-    { title: "About", path: "/about" },
+    { title: "Home", path: "/" },
     { title: "Blog", path: "/blog" },
-    { title: "Contact", path: "/contact" },
+    { title: "Projects", path: "/projects" },
   ];
 
   const handleClick = () => {
@@ -27,7 +26,7 @@ function NavLinks({ onAction }: { onAction: () => void }) {
   };
 
   return (
-    <nav className="flex flex-col md:flex-row gap-4 text-muted-foreground">
+    <nav className="flex flex-col md:flex-row gap-3 text-muted-foreground">
       {links.map((link, index) => (
         <NavLink
           to={link.path}
@@ -76,16 +75,58 @@ export function Header() {
       )}
     >
       <section className="transition-all max-w-3xl mx-auto flex justify-between items-center px-1 py-2">
-        <div className="flex justify-between items-center gap-6">
-          <NavLink to="/">
-            {/* <Logo className="h-[1.5rem] w-[1.5rem] fill-foreground inline-block pb-[0.15rem] pl-2 md:pl-0" /> */}
-            {/* <p className="inline-block font-bold">surajtc.dev</p> */}
-          </NavLink>
-          <div className="hidden md:block">
-            <NavLinks onAction={handleClose} />
-          </div>
+        {/* <div className="flex justify-between items-center gap-6">
+          <NavLink to="/"> */}
+        {/* <Logo className="h-[1.5rem] w-[1.5rem] fill-foreground inline-block pb-[0.15rem] pl-2 md:pl-0" /> */}
+        {/* <p className="inline-block font-bold">surajtc.dev</p> */}
+        {/* </NavLink> */}
+        <div className="hidden md:block">
+          <NavLinks onAction={handleClose} />
         </div>
+        {/* </div> */}
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+          <SheetTrigger className="block md:hidden">
+            <div className={buttonVariants({ variant: "ghost", size: "icon" })}>
+              <Menu />
+            </div>
+          </SheetTrigger>
+          <SheetContent side="left" className="block md:hidden">
+            <SheetHeader>
+              <SheetTitle className="flex justify-between items-center mb-4">
+                <NavLink to="/" onClick={handleClose}>
+                  <Logo className="h-[1.5rem] w-[1.5rem] fill-foreground inline-block pb-[0.15rem]" />
+                  {/* <p className="inline-block font-bold">surajtc.dev</p> */}
+                </NavLink>
+                <SheetClose>
+                  <X className="h-4 w-4" />
+                  <span className="sr-only">Close</span>
+                </SheetClose>
+              </SheetTitle>
+            </SheetHeader>
 
+            <div className="flex flex-col h-full justify-between pb-8 pt-4">
+              <div className="text-xl md:text-md">
+                <NavLinks onAction={handleClose} />
+              </div>
+              <div>
+                {socialLinks.map((item, idx) => (
+                  <Link
+                    key={idx}
+                    to={item.link}
+                    className={buttonVariants({
+                      variant: "ghost",
+                      size: "icon",
+                    })}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <item.icon className="inline h-[1.2rem] w-[1.2rem]" />
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </SheetContent>
+        </Sheet>
         <div className="flex justify-center items-center">
           <div className="hidden md:block">
             {/* {socialLinks.map((item, idx) => (
@@ -103,55 +144,10 @@ export function Header() {
           <ModeToggle />
           <Link
             to="/contact"
-            className={buttonVariants({ variant: "secondary" })}
+            className={`${buttonVariants({ variant: "secondary" })} ml-2`}
           >
             <span className="px-1">Contact</span>
           </Link>
-          <Sheet open={isOpen} onOpenChange={setIsOpen}>
-            <SheetTrigger className="block md:hidden">
-              <div
-                className={buttonVariants({ variant: "ghost", size: "icon" })}
-              >
-                <Menu />
-              </div>
-            </SheetTrigger>
-            <SheetContent side="left" className="block md:hidden">
-              <SheetHeader>
-                <SheetTitle className="flex justify-between items-center mb-4">
-                  <NavLink to="/" onClick={handleClose}>
-                    <Logo className="h-[1.5rem] w-[1.5rem] fill-foreground inline-block pb-[0.15rem]" />
-                    {/* <p className="inline-block font-bold">surajtc.dev</p> */}
-                  </NavLink>
-                  <SheetClose>
-                    <X className="h-4 w-4" />
-                    <span className="sr-only">Close</span>
-                  </SheetClose>
-                </SheetTitle>
-              </SheetHeader>
-
-              <div className="flex flex-col h-full justify-between pb-8 pt-4">
-                <div className="text-xl md:text-md">
-                  <NavLinks onAction={handleClose} />
-                </div>
-                <div>
-                  {socialLinks.map((item, idx) => (
-                    <Link
-                      key={idx}
-                      to={item.link}
-                      className={buttonVariants({
-                        variant: "ghost",
-                        size: "icon",
-                      })}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <item.icon className="inline h-[1.2rem] w-[1.2rem]" />
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </SheetContent>
-          </Sheet>
         </div>
       </section>
     </header>

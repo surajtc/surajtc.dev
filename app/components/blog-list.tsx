@@ -15,21 +15,21 @@ function BlogItem({ blog }: { blog: Blog }) {
   const date = new Date(blog.frontmatter.date || "");
 
   return (
-    <Link to={`/blog/${blog.slug}`} className="group block px-2 md:px-0 py-3">
-      <h3 className="group-hover:underline font-semibold text-lg py-2">
+    <Link to={`/blog/${blog.slug}`} className="group block px-2 md:px-0">
+      <h3 className="group-hover:underline mt-6">
         {blog.frontmatter.meta?.title ?? blog.slug}
       </h3>
-      <p className="text-muted-foreground text-sm">
+      <p className="text-muted-foreground">
         {date.toLocaleDateString("en-US", {
           year: "numeric",
           month: "long",
           day: "2-digit",
         })}
       </p>
-      <p className="py-4 prose dark:prose-invert min-w-full">
+      <p className="min-w-full mt-3 text-muted-foreground text-sm">
         {blog.frontmatter.meta?.description}
       </p>
-      <Separator className="my-2" />
+      <Separator className="mt-2 mb-3" />
     </Link>
   );
 }
