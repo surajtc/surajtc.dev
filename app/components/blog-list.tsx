@@ -16,7 +16,7 @@ function BlogItem({ blog }: { blog: Blog }) {
 
   return (
     <Link to={`/blog/${blog.slug}`} className="group block px-2 md:px-0">
-      <h3 className="group-hover:underline mt-6">
+      <h3 className="group-hover:underline mt-6 font-semibold">
         {blog.frontmatter.meta?.title ?? blog.slug}
       </h3>
       <p className="text-muted-foreground">
@@ -26,7 +26,7 @@ function BlogItem({ blog }: { blog: Blog }) {
           day: "2-digit",
         })}
       </p>
-      <p className="min-w-full mt-3 text-muted-foreground text-sm">
+      <p className="min-w-full mt-3">
         {blog.frontmatter.meta?.description}
       </p>
       <Separator className="mt-2 mb-3" />

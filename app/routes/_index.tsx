@@ -74,14 +74,14 @@ export default function Index() {
           </div>
         </section>
         <section className="border rounded-md p-4 md:col-span-3">
-          <h3 className="text-2xl font-semibold">Education</h3>
+          <h3 className="text-2xl font-bold">Education</h3>
           <div className="mt-3">
-            <p className="font-bold ">Master's in Machine Learning</p>
+            <p className="font-semibold">Master's in Machine Learning</p>
             <p className="text-muted-foreground">University of Marylad, 2024</p>
             <p className="text-muted-foreground">College Park, USA</p>
           </div>
           <div className="mt-3">
-            <p className="font-bold">Bachelors's in Computer Science</p>
+            <p className="font-semibold">Bachelors's in Computer Science</p>
             <p className="text-muted-foreground">
               Visveswaraya Technological Univerisy, 2021
             </p>
@@ -112,8 +112,8 @@ export default function Index() {
         </section>
       </div>
 
-      <div>
-        <h3 className="text-2xl font-semibold">About Me</h3>
+      <div className="p-4">
+        <h3 className="text-2xl font-bold">About Me</h3>
         <p className="mt-3">
           Hi, I'm Suraj, aspiring Software Engineer. I enjoy making and breaking
           things with code. In this space, I share what I'm working on, what
@@ -122,8 +122,8 @@ export default function Index() {
       </div>
 
       {featuredBlogs.length && (
-        <div className="mt-6">
-          <h3 className="text-2xl font-semibold">Recent Blog</h3>
+        <div className="mt-6 p-4">
+          <h3 className="text-2xl font-bold">Recent Blog</h3>
           <div>
             <BlogList blogs={featuredBlogs} />
             <Link
