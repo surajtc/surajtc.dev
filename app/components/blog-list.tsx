@@ -29,7 +29,7 @@ function BlogItem({ blog }: { blog: Blog }) {
       <p className="min-w-full mt-3">
         {blog.frontmatter.meta?.description}
       </p>
-      <Separator className="mt-2 mb-3" />
+      <Separator className="mt-2 mb-4" />
     </Link>
   );
 }

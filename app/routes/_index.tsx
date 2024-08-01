@@ -2,14 +2,13 @@ import { Link, useLoaderData } from "@remix-run/react";
 import {
   Briefcase,
   Building,
+  FlaskConical,
   Github,
   GraduationCap,
   Linkedin,
   Mail,
   MapPin,
   Search,
-  TestTube2,
-  User,
 } from "lucide-react";
 import BlogList from "~/components/blog-list";
 import { buttonVariants } from "~/components/ui/button";
@@ -52,7 +51,7 @@ export default function Index() {
           </div>
           <div>
             <h1 className="font-semibold text-3xl ml-2">{"Suraj T C"}</h1>
-            <p className="text-muted-foreground ml-2 my-3">
+            <p className="text-muted-foreground ml-2 my-4">
               {
                 "Machine learning graduate with 2 years of industry experience as Software Engineer who enjoys solving real-world problems"
               }
@@ -75,12 +74,12 @@ export default function Index() {
         </section>
         <section className="border rounded-md p-4 md:col-span-3">
           <h3 className="text-2xl font-bold">Education</h3>
-          <div className="mt-3">
+          <div className="mt-4">
             <p className="font-semibold">Master's in Machine Learning</p>
             <p className="text-muted-foreground">University of Marylad, 2024</p>
             <p className="text-muted-foreground">College Park, USA</p>
           </div>
-          <div className="mt-3">
+          <div className="mt-4">
             <p className="font-semibold">Bachelors's in Computer Science</p>
             <p className="text-muted-foreground">
               Visveswaraya Technological Univerisy, 2021
@@ -93,19 +92,19 @@ export default function Index() {
             <Search className="inline h-[1.2rem] w-[1.2rem] mr-3 text-muted-foreground" />
             <p className="inline">Seeking Full-time Roles</p>
           </div>
-          <div className="flex items-center mt-3">
-            <TestTube2 className="inline h-[1.2rem] w-[1.2rem] mr-3 text-muted-foreground" />
+          <div className="flex items-center mt-4">
+            <FlaskConical className="inline h-[1.2rem] w-[1.2rem] mr-3 text-muted-foreground" />
             <p className="inline">Machine Learning</p>
           </div>
-          <div className="flex items-center mt-3">
+          <div className="flex items-center mt-4">
             <Briefcase className="inline h-[1.2rem] w-[1.2rem] mr-3 text-muted-foreground" />
             <p className="inline">Software Engineer Intern</p>
           </div>
-          <div className="flex items-center mt-3">
+          <div className="flex items-center mt-4">
             <Building className="inline h-[1.2rem] w-[1.2rem] mr-3 text-muted-foreground" />
             <p className="inline">CATT Lab</p>
           </div>
-          <div className="flex items-center mt-3">
+          <div className="flex items-center mt-4">
             <MapPin className="inline h-[1.2rem] w-[1.2rem] mr-3 text-muted-foreground" />
             <p className="inline">College Park, MD</p>
           </div>
@@ -114,7 +113,7 @@ export default function Index() {
 
       <div className="p-4">
         <h3 className="text-2xl font-bold">About Me</h3>
-        <p className="mt-3">
+        <p className="mt-4">
           Hi, I'm Suraj, aspiring Software Engineer. I enjoy making and breaking
           things with code. In this space, I share what I'm working on, what
           I've learned, and even epic failures along the way.
@@ -135,6 +134,10 @@ export default function Index() {
           </div>
         </div>
       )}
+
+      <div className="p-4">
+        <h3 className="text-2xl font-bold">Projects</h3>
+      </div>
     </>
   );
 }
