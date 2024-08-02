@@ -11,6 +11,8 @@ import {
   Search,
 } from "lucide-react";
 import BlogList from "~/components/blog-list";
+import ContactForm from "~/components/contact-form";
+import PorjectList from "~/components/project-list";
 import { buttonVariants } from "~/components/ui/button";
 import { Separator } from "~/components/ui/separator";
 
@@ -53,7 +55,7 @@ export default function Index() {
             <h1 className="font-semibold text-3xl ml-2">{"Suraj T C"}</h1>
             <p className="text-muted-foreground ml-2 my-4">
               {
-                "Machine learning graduate with 2 years of industry experience as Software Engineer who enjoys solving real-world problems"
+                "Machine Learning professional with two years of idustry experience in Software Engineering. Seeking an oppurtunity where I can continue to learn and grow."
               }
             </p>
             {socialLinks.map((item, idx) => (
@@ -137,6 +139,22 @@ export default function Index() {
 
       <div className="p-4">
         <h3 className="text-2xl font-bold">Projects</h3>
+        <div>
+          <PorjectList />
+          <Link
+            to="/projects"
+            className="font-bold text-sm text-center w-full block"
+          >
+            See all
+          </Link>
+        </div>
+      </div>
+
+      <div className="p-4">
+        <h3 className="text-2xl font-bold">Contact</h3>
+        <div className="mt-4">
+          <ContactForm />
+        </div>
       </div>
     </>
   );

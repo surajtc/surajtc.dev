@@ -41,7 +41,7 @@ export const links: LinksFunction = () => [
 export const meta: MetaFunction = () => {
   return [
     {
-      title: "Suraj T C | Portfolio | Machine Learning",
+      title: "Suraj T C - Software Engineer - Machine Learning",
     },
     {
       name: "description",
@@ -143,8 +143,8 @@ export function App() {
           </section>
           <footer className="max-w-3xl w-full mx-auto p-1 pt-8">
             <div className="flex justify-between text-sm text-muted-foreground">
-              <span>surajtc.dev</span>
-              <span>&copy; {year}</span>
+              <span>Open-sourced on Github</span>
+              <span>surajtc.dev &copy; {year}</span>
             </div>
           </footer>
         </main>

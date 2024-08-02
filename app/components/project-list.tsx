@@ -1,0 +1,71 @@
+import { Link } from "@remix-run/react";
+import { Separator } from "./ui/separator";
+import { buttonVariants } from "./ui/button";
+
+export type Project = {
+  title: string;
+  description: string;
+  link: string;
+  stack: string[];
+};
+
+const PROJECTS = [
+  {
+    title: "Efficient Document Retrieval with RAG for GPT-3.5",
+    description:
+      "This project explores using Retrieval-Augmented Generation (RAG) to enhance document retrieval capabilities for GPT-3.5. RAG leverages a dual approach, combining information retrieval techniques with the powerful language generation of GPT-3.5.",
+    link: "https://github.com/surajtc/ollama-rag",
+    stack: ["Ollama", "PrivateGPT", "Chroma DB"],
+  },
+  {
+    title: "LFW Face Recognition",
+    description:
+      "Evaluation of SVM and kNN classifiers using different data representation methods on Labeled Faces in the Wild (LFW) dataset.",
+    link: "https://github.com/surajtc/lfw-face-recognition",
+    stack: ["Matplotlib", "Numpy"],
+  },
+  {
+    title: "PhotoHive - A Photo Gallery App",
+    description:
+      "PhotoHive is a gallery app that allows users to upload, search, and manage photos using a serverless backend.",
+    link: "https://github.com/surajtc/PhotoHive",
+    stack: ["Aws Lambda", "React.js", "Flask"],
+  },
+];
+
+function ProjectItem({ project }: { project: Project }) {
+  return (
+    <div className="group block px-2 md:px-0">
+      <div className="flex justify-between mt-6">
+        <div>
+          <h3 className="group-hover:underline font-semibold">
+            {project.title}
+          </h3>
+          <p className="text-muted-foreground">{project.stack.join(", ")}</p>
+        </div>
+        <Link
+          to={project.link}
+          target="_blank"
+          rel="noreferrer"
+          className={buttonVariants({ size: "sm", variant: "link" })}
+        >
+          View on Github
+        </Link>
+      </div>
+      <p className="min-w-full mt-3">{project.description}</p>
+
+      <Separator className="mt-2 mb-4" />
+    </div>
+  );
+}
+
+export default function PorjectList() {
+  return (
+    <>
+      {PROJECTS &&
+        PROJECTS.map((project) => (
+          <ProjectItem project={project} key={project.link} />
+        ))}
+    </>
+  );
+}
