@@ -1,6 +1,7 @@
 import { Link } from "@remix-run/react";
 import { Separator } from "./ui/separator";
 import { buttonVariants } from "./ui/button";
+import { ExternalLink } from "lucide-react";
 
 export type Project = {
   title: string;
@@ -35,10 +36,10 @@ const PROJECTS = [
 
 function ProjectItem({ project }: { project: Project }) {
   return (
-    <div className="group block px-2 md:px-0">
-      <div className="flex justify-between mt-6">
+    <div className="block">
+      <div className="flex justify-between items-top mt-6">
         <div>
-          <h3 className="group-hover:underline font-semibold">
+          <h3 className="font-semibold pt-2">
             {project.title}
           </h3>
           <p className="text-muted-foreground">{project.stack.join(", ")}</p>
@@ -47,9 +48,10 @@ function ProjectItem({ project }: { project: Project }) {
           to={project.link}
           target="_blank"
           rel="noreferrer"
-          className={buttonVariants({ size: "sm", variant: "link" })}
+          className={buttonVariants({ size: "sm", variant: "ghost" })}
         >
-          View on Github
+          GitHub
+          <ExternalLink className="inline h-[1rem] w-[1rem] ml-1" />
         </Link>
       </div>
       <p className="min-w-full mt-3">{project.description}</p>

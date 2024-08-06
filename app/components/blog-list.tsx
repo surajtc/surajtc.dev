@@ -15,7 +15,7 @@ function BlogItem({ blog }: { blog: Blog }) {
   const date = new Date(blog.frontmatter.date || "");
 
   return (
-    <Link to={`/blog/${blog.slug}`} className="group block px-2 md:px-0">
+    <Link to={`/blog/${blog.slug}`} className="group block">
       <h3 className="group-hover:underline mt-6 font-semibold">
         {blog.frontmatter.meta?.title ?? blog.slug}
       </h3>

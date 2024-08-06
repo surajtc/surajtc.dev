@@ -51,7 +51,7 @@ export default function Index() {
               className="h-full aspect-square object-cover object-center rounded-full overflow-hidden"
             />
           </div>
-          <div>
+          <div className="text-center md:text-left text-balance">
             <h1 className="font-semibold text-3xl ml-2">{"Suraj T C"}</h1>
             <p className="text-muted-foreground ml-2 my-4">
               {

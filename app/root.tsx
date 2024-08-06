@@ -12,6 +12,7 @@ import type {
   MetaFunction,
 } from "@remix-run/node";
 import {
+  Link,
   Links,
   LiveReload,
   Meta,
@@ -28,6 +29,8 @@ import { Header } from "~/components/header";
 import { useEffect } from "react";
 import { Toaster, toast as notify } from "sonner";
 import * as gtag from "~/utils/gtags.client";
+import { buttonVariants } from "./components/ui/button";
+import { ExternalLink } from "lucide-react";
 
 type ToasterProps = React.ComponentProps<typeof Toaster>;
 
@@ -143,7 +146,18 @@ export function App() {
           </section>
           <footer className="max-w-3xl w-full mx-auto p-1 pt-8">
             <div className="flex justify-between text-sm text-muted-foreground">
-              <span>Open-sourced on Github</span>
+              <span>
+                Open-sourced on&nbsp;
+                <Link
+                  to={"https://github.com/surajtc/surajtc.dev"}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center hover:underline"
+                >
+                  GitHub
+                  <ExternalLink className="inline h-[0.9rem] w-[0.9rem] ml-1" />
+                </Link>
+              </span>
               <span>surajtc.dev &copy; {year}</span>
             </div>
           </footer>
