@@ -4,7 +4,6 @@ import {
   Building,
   FlaskConical,
   Github,
-  GraduationCap,
   Linkedin,
   Mail,
   MapPin,
@@ -17,21 +16,18 @@ import { buttonVariants } from "~/components/ui/button";
 import profile from "~/content/images/profile.jpg";
 import { getBlogs } from "~/utils/blog.server";
 import { Contact } from "./resources/contact";
+import config from "~/content/config.json";
 
 export const loader = async () => {
   return await getBlogs(3);
 };
 
+export function Title({ title }: { title: string }) {
+  return <h3 className="text-2xl font-bold">{title}</h3>;
+}
+
 export default function Index() {
   const featuredBlogs = useLoaderData<typeof loader>();
-
-  const bioData = [
-    // { title: "Suraj T C", icon: User },
-    { title: "Intern at CATT Lab", icon: Briefcase },
-    { title: "CATT Lab", icon: Briefcase },
-    { title: "University of Maryland", icon: GraduationCap },
-    { title: "College Park, MD", icon: MapPin },
-  ];
 
   const socialLinks = [
     { link: "mailto:mail.surajtc@gmail.com", icon: Mail },
@@ -51,11 +47,11 @@ export default function Index() {
             />
           </div>
           <div className="text-center md:text-left">
-            <h1 className="font-semibold text-3xl ml-2 tracking-tight">{"Suraj T C"}</h1>
+            <h1 className="font-semibold text-3xl ml-2 tracking-tight">
+              {config.name}
+            </h1>
             <p className="text-muted-foreground ml-2 my-2">
-              {
-                "Machine Learning professional with two years of idustry experience in Software Engineering. Seeking an oppurtunity where I can continue to learn and grow."
-              }
+              {config.description}
             </p>
 
             {socialLinks.map((item, idx) => (
@@ -75,19 +71,14 @@ export default function Index() {
           </div>
         </section>
         <section className="border rounded-md p-4 md:col-span-3">
-          <h3 className="text-2xl font-bold">Education</h3>
-          <div className="mt-4">
-            <p className="font-semibold">Master's in Machine Learning</p>
-            <p className="text-muted-foreground">University of Marylad, 2024</p>
-            <p className="text-muted-foreground">College Park, USA</p>
-          </div>
-          <div className="mt-4">
-            <p className="font-semibold">Bachelors's in Computer Science</p>
-            <p className="text-muted-foreground">
-              Visveswaraya Technological Univerisy, 2021
-            </p>
-            <p className="text-muted-foreground">Mysore, India</p>
-          </div>
+          <Title title="Education" />
+          {config.education.map((v, i) => (
+            <div className="mt-4" key={i}>
+              <p className="font-semibold">{v.degree}</p>
+              <p className="text-primary/90">{`${v.university}, ${v.year}`}</p>
+              <p className="text-primary/90">{v.location}</p>
+            </div>
+          ))}
         </section>
         <section className="border rounded-md p-4 md:col-span-2">
           <div className="flex items-center">
@@ -114,17 +105,13 @@ export default function Index() {
       </div>
 
       <div className="p-4">
-        <h3 className="text-2xl font-bold">About Me</h3>
-        <p className="mt-4">
-          Hi, I'm Suraj, aspiring Software Engineer. I enjoy making and breaking
-          things with code. In this space, I share what I'm working on, what
-          I've learned, and even epic failures along the way.
-        </p>
+        <Title title="About Me" />
+        <p className="mt-4">{config.about}</p>
       </div>
 
       {featuredBlogs.length && (
         <div className="mt-6 p-4">
-          <h3 className="text-2xl font-bold">Recent Blog</h3>
+          <Title title="Bolgs" />
           <div>
             <BlogList blogs={featuredBlogs} />
             <Link
@@ -138,7 +125,7 @@ export default function Index() {
       )}
 
       <div className="p-4">
-        <h3 className="text-2xl font-bold">Projects</h3>
+        <Title title="Projects" />
         <div>
           <PorjectList />
           <Link
@@ -151,7 +138,7 @@ export default function Index() {
       </div>
 
       <div className="p-4">
-        <h3 className="text-2xl font-bold">Contact</h3>
+        <Title title="Contact" />
         <div className="mt-4">
           <Contact />
         </div>

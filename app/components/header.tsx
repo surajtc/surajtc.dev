@@ -10,9 +10,18 @@ import {
 } from "~/components/ui/sheet";
 import { Github, Linkedin, Mail, Menu, X } from "lucide-react";
 import { cn } from "~/lib/utils";
-import { buttonVariants } from "./ui/button";
+import { Button, buttonVariants } from "./ui/button";
 import { useEffect, useState } from "react";
 import Logo from "./logo";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./ui/dialog";
+import { Contact } from "~/routes/resources/contact";
 
 function NavLinks({ onAction }: { onAction: () => void }) {
   const links = [
@@ -142,12 +151,24 @@ export function Header() {
             ))} */}
           </div>
           <ModeToggle />
-          <Link
-            to="/contact"
-            className={`${buttonVariants({ variant: "secondary" })} ml-2`}
-          >
-            <span className="px-1">Contact</span>
-          </Link>
+          <Dialog>
+            <DialogTrigger>
+              <Button variant="secondary">Contact</Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Contact</DialogTitle>
+                <DialogDescription>
+                  <div className="my-2">
+                    <p>Let's connect! </p>
+                    <p>mail.surajtc@gmail.com</p>
+                  </div>
+
+                  <Contact />
+                </DialogDescription>
+              </DialogHeader>
+            </DialogContent>
+          </Dialog>
         </div>
       </section>
     </header>
