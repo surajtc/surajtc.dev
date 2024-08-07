@@ -11,13 +11,12 @@ import {
   Search,
 } from "lucide-react";
 import BlogList from "~/components/blog-list";
-import ContactForm from "~/components/contact-form";
 import PorjectList from "~/components/project-list";
 import { buttonVariants } from "~/components/ui/button";
-import { Separator } from "~/components/ui/separator";
 
 import profile from "~/content/images/profile.jpg";
 import { getBlogs } from "~/utils/blog.server";
+import { Contact } from "./resources/contact";
 
 export const loader = async () => {
   return await getBlogs(3);
@@ -51,13 +50,14 @@ export default function Index() {
               className="h-full aspect-square object-cover object-center rounded-full overflow-hidden"
             />
           </div>
-          <div className="text-center md:text-left text-balance">
-            <h1 className="font-semibold text-3xl ml-2">{"Suraj T C"}</h1>
-            <p className="text-muted-foreground ml-2 my-4">
+          <div className="text-center md:text-left">
+            <h1 className="font-semibold text-3xl ml-2 tracking-tight">{"Suraj T C"}</h1>
+            <p className="text-muted-foreground ml-2 my-2">
               {
                 "Machine Learning professional with two years of idustry experience in Software Engineering. Seeking an oppurtunity where I can continue to learn and grow."
               }
             </p>
+
             {socialLinks.map((item, idx) => (
               <Link
                 key={idx}
@@ -129,7 +129,7 @@ export default function Index() {
             <BlogList blogs={featuredBlogs} />
             <Link
               to="/blog"
-              className="font-bold text-sm text-center w-full block"
+              className="font-bold text-sm text-center w-full block my-2"
             >
               See all
             </Link>
@@ -143,7 +143,7 @@ export default function Index() {
           <PorjectList />
           <Link
             to="/projects"
-            className="font-bold text-sm text-center w-full block"
+            className="font-bold text-sm text-center w-full block my-2"
           >
             See all
           </Link>
@@ -153,7 +153,7 @@ export default function Index() {
       <div className="p-4">
         <h3 className="text-2xl font-bold">Contact</h3>
         <div className="mt-4">
-          <ContactForm />
+          <Contact />
         </div>
       </div>
     </>

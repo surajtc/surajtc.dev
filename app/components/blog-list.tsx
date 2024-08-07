@@ -19,17 +19,17 @@ function BlogItem({ blog }: { blog: Blog }) {
       <h3 className="group-hover:underline mt-6 font-semibold">
         {blog.frontmatter.meta?.title ?? blog.slug}
       </h3>
-      <p className="text-muted-foreground">
+      <p className="text-muted-foreground text-sm mt-1">
         {date.toLocaleDateString("en-US", {
           year: "numeric",
           month: "long",
           day: "2-digit",
         })}
       </p>
-      <p className="min-w-full mt-3">
+      <p className="min-w-full mb-3 mt-4 text-primary/90">
         {blog.frontmatter.meta?.description}
       </p>
-      <Separator className="mt-2 mb-4" />
+      <Separator />
     </Link>
   );
 }

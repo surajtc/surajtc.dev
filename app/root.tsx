@@ -30,7 +30,7 @@ import { useEffect } from "react";
 import { Toaster, toast as notify } from "sonner";
 import * as gtag from "~/utils/gtags.client";
 import { buttonVariants } from "./components/ui/button";
-import { ExternalLink } from "lucide-react";
+import { ArrowUpRight, ExternalLink } from "lucide-react";
 
 type ToasterProps = React.ComponentProps<typeof Toaster>;
 
@@ -144,23 +144,24 @@ export function App() {
           <section className="flex-1 max-w-3xl w-full mx-auto px-1 pt-3">
             <Outlet />
           </section>
-          <footer className="max-w-3xl w-full mx-auto p-1 pt-8">
-            <div className="flex justify-between text-sm text-muted-foreground">
-              <span>
-                Open-sourced on&nbsp;
-                <Link
-                  to={"https://github.com/surajtc/surajtc.dev"}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center hover:underline"
-                >
-                  GitHub
-                  <ExternalLink className="inline h-[0.9rem] w-[0.9rem] ml-1" />
-                </Link>
-              </span>
-              <span>surajtc.dev &copy; {year}</span>
-            </div>
-          </footer>
+          <div className="border-t mt-4">
+            <footer className="max-w-3xl w-full mx-auto p-1 py-2">
+              <div className="flex justify-between text-sm text-muted-foreground">
+                <span>
+                  <Link
+                    to={"https://github.com/surajtc/surajtc.dev"}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center hover:underline"
+                  >
+                    Open-sourced on github
+                    <ArrowUpRight className="inline h-[0.9rem] w-[0.9rem]" />
+                  </Link>
+                </span>
+                <span>surajtc.dev &copy; {year}</span>
+              </div>
+            </footer>
+          </div>
         </main>
         <ScrollRestoration />
         <Scripts />

@@ -7,54 +7,6 @@ import { Input } from "~/components/ui/input";
 import { Textarea } from "~/components/ui/textarea";
 import * as gtag from "~/utils/gtags.client";
 
-export default function ContactForm() {
-  const actionData = useActionData<typeof action>();
-  const form = useRef<HTMLFormElement>(null);
-  const navigation = useNavigation();
-
-  useEffect(() => {
-    if (navigation.state === "idle" && actionData?.ok) {
-      form.current?.reset();
-    }
-  }, [navigation.state, actionData?.ok]);
-
-  return (
-    <>
-      {/* <h2 className="font-semibold text-2xl pb-2">Contact</h2> */}
-      <Form action="/" method="post" noValidate ref={form}>
-        <div className="grid w-full gap-4">
-          <div>
-            <Input placeholder="Email" type="email" name="email" required />
-            {actionData?.errors?.email && (
-              <span className="text-sm">{actionData.errors.email}</span>
-            )}
-          </div>
-
-          <div>
-            <Input placeholder="Full Name" name="name" required />
-            {actionData?.errors?.name && (
-              <span className="text-sm">{actionData.errors.name}</span>
-            )}
-          </div>
-
-          <div>
-            <Textarea
-              placeholder="Type your message here"
-              name="message"
-              required
-            />
-            {actionData?.errors?.message && (
-              <span className="text-sm">{actionData.errors.message}</span>
-            )}
-          </div>
-
-          <Button type="submit">Send message</Button>
-        </div>
-      </Form>
-    </>
-  );
-}
-
 export async function action({ request }: ActionFunctionArgs) {
   const url =
     "https://script.google.com/macros/s/AKfycbyDPLvodQ28-UWF_PLfYUiY5ZEjf0Cq2uWo9cWMWnT4aLNtGLKXvYKCQLhFTN6QwvODvQ/exec";
@@ -121,5 +73,53 @@ export async function action({ request }: ActionFunctionArgs) {
   return jsonWithSuccess(
     { ok: true, errors },
     { message: "Message sent successfully!" }
+  );
+}
+
+export function Contact() {
+  const actionData = useActionData<typeof action>();
+  const form = useRef<HTMLFormElement>(null);
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    if (navigation.state === "idle" && actionData?.ok) {
+      form.current?.reset();
+    }
+  }, [navigation.state, actionData?.ok]);
+
+  return (
+    <>
+      {/* <h2 className="font-semibold text-2xl pb-2">Contact</h2> */}
+      <Form method="post" noValidate ref={form}>
+        <div className="grid w-full gap-4">
+          <div>
+            <Input placeholder="Email" type="email" name="email" required />
+            {actionData?.errors?.email && (
+              <span className="text-sm">{actionData.errors.email}</span>
+            )}
+          </div>
+
+          <div>
+            <Input placeholder="Full Name" name="name" required />
+            {actionData?.errors?.name && (
+              <span className="text-sm">{actionData.errors.name}</span>
+            )}
+          </div>
+
+          <div>
+            <Textarea
+              placeholder="Type your message here"
+              name="message"
+              required
+            />
+            {actionData?.errors?.message && (
+              <span className="text-sm">{actionData.errors.message}</span>
+            )}
+          </div>
+
+          <Button type="submit">Send message</Button>
+        </div>
+      </Form>
+    </>
   );
 }

@@ -31,7 +31,7 @@ function NavLinks({ onAction }: { onAction: () => void }) {
         <NavLink
           to={link.path}
           className={({ isActive, isPending }) =>
-            isActive ? "text-foreground" : isPending ? "" : ""
+            isActive ? "text-foreground font-medium" : isPending ? "" : ""
           }
           key={index}
           onClick={handleClick}
