@@ -5,7 +5,7 @@ import { jsonWithError, jsonWithSuccess } from "remix-toast";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Textarea } from "~/components/ui/textarea";
-import * as gtag from "~/utils/gtags.client";
+// import * as gtag from "~/utils/gtags.client";
 
 export async function action({ request }: ActionFunctionArgs) {
   const url =
@@ -54,17 +54,16 @@ export async function action({ request }: ActionFunctionArgs) {
       body: encoded,
     });
 
-    gtag.event({
-      action: "submit_form",
-      category: "Contact",
-      label: name,
-    });
+    // gtag.event({
+    //   action: "submit_form",
+    //   category: "Contact",
+    //   label: name,
+    // });
 
     if (response.ok) {
-      console.log(response.ok, response.status);
+      console.log("Message sent successfully!", response.ok, response.status);
     }
   } catch (err) {
-    console.error(err);
     return jsonWithError(
       { ok: false, errors },
       { message: "There was an error while sending your message." }
@@ -119,7 +118,9 @@ export function Contact() {
           )}
         </div>
 
-        <Button type="submit">Send message</Button>
+        <Button type="submit">
+          {fetcher.state == "submitting" ? "Submitting..." : "Send message"}
+        </Button>
       </div>
     </fetcher.Form>
   );

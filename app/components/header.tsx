@@ -153,7 +153,9 @@ export function Header() {
           <ModeToggle />
           <Dialog>
             <DialogTrigger>
-              <Button variant="secondary">Contact</Button>
+              <Button variant="secondary" className="ml-2">
+                Contact
+              </Button>
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>

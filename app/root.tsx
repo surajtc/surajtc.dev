@@ -25,17 +25,18 @@ import {
 } from "@remix-run/react";
 import { themeSessionResolver } from "./sessions.server";
 import stylesheet from "~/tailwind.css";
+import sonnerStyles from "~/sonner.css";
 import { Header } from "~/components/header";
 import { useEffect } from "react";
 import { Toaster, toast as notify } from "sonner";
 import * as gtag from "~/utils/gtags.client";
-import { buttonVariants } from "./components/ui/button";
-import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 type ToasterProps = React.ComponentProps<typeof Toaster>;
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
+  { rel: "stylesheet", href: sonnerStyles },
   { rel: "preconnect", href: "https://rsms.me/" },
   { rel: "stylesheet", href: "https://rsms.me/inter/inter.css" },
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),

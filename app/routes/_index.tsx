@@ -11,12 +11,13 @@ import {
 } from "lucide-react";
 import BlogList from "~/components/blog-list";
 import PorjectList from "~/components/project-list";
-import { buttonVariants } from "~/components/ui/button";
+import { Button, buttonVariants } from "~/components/ui/button";
 
 import profile from "~/content/images/profile.jpg";
 import { getBlogs } from "~/utils/blog.server";
 import { Contact } from "./resources.contact";
 import config from "~/content/config.json";
+import { jsonWithError } from "remix-toast";
 
 export const loader = async () => {
   return await getBlogs(3);
