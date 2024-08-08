@@ -15,7 +15,7 @@ import { buttonVariants } from "~/components/ui/button";
 
 import profile from "~/content/images/profile.jpg";
 import { getBlogs } from "~/utils/blog.server";
-import { Contact } from "./resources/contact";
+import { Contact } from "./resources.contact";
 import config from "~/content/config.json";
 
 export const loader = async () => {

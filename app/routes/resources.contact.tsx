@@ -1,59 +1,11 @@
 import { ActionFunctionArgs, json } from "@remix-run/node";
-import { Form, useActionData, useNavigation } from "@remix-run/react";
+import { useFetcher } from "@remix-run/react";
 import { useEffect, useRef } from "react";
 import { jsonWithError, jsonWithSuccess } from "remix-toast";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Textarea } from "~/components/ui/textarea";
 import * as gtag from "~/utils/gtags.client";
-
-export default function Contact() {
-  const actionData = useActionData<typeof action>();
-  const form = useRef<HTMLFormElement>(null);
-  const navigation = useNavigation();
-
-  useEffect(() => {
-    if (navigation.state === "idle" && actionData?.ok) {
-      form.current?.reset();
-    }
-  }, [navigation.state, actionData?.ok]);
-
-  return (
-    <>
-      {/* <h2 className="font-semibold text-2xl pb-2">Contact</h2> */}
-      <Form action="/contact" method="post" noValidate ref={form}>
-        <div className="grid w-full gap-4">
-          <div>
-            <Input placeholder="Email" type="email" name="email" required />
-            {actionData?.errors?.email && (
-              <span className="text-sm">{actionData.errors.email}</span>
-            )}
-          </div>
-
-          <div>
-            <Input placeholder="Full Name" name="name" required />
-            {actionData?.errors?.name && (
-              <span className="text-sm">{actionData.errors.name}</span>
-            )}
-          </div>
-
-          <div>
-            <Textarea
-              placeholder="Type your message here"
-              name="message"
-              required
-            />
-            {actionData?.errors?.message && (
-              <span className="text-sm">{actionData.errors.message}</span>
-            )}
-          </div>
-
-          <Button type="submit">Send message</Button>
-        </div>
-      </Form>
-    </>
-  );
-}
 
 export async function action({ request }: ActionFunctionArgs) {
   const url =
@@ -121,5 +73,54 @@ export async function action({ request }: ActionFunctionArgs) {
   return jsonWithSuccess(
     { ok: true, errors },
     { message: "Message sent successfully!" }
+  );
+}
+
+export function Contact() {
+  const fetcher = useFetcher<typeof action>();
+  const form = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    if (fetcher.state === "idle" && fetcher.data?.ok) {
+      form.current?.reset();
+    }
+  }, [fetcher.state, fetcher.data?.ok]);
+
+  return (
+    <fetcher.Form
+      method="post"
+      action="/resources/contact"
+      ref={form}
+      noValidate
+    >
+      <div className="grid w-full gap-4">
+        <div>
+          <Input placeholder="Email" type="email" name="email" required />
+          {fetcher.data?.errors?.email && (
+            <span className="text-sm">{fetcher.data.errors.email}</span>
+          )}
+        </div>
+
+        <div>
+          <Input placeholder="Full Name" name="name" required />
+          {fetcher.data?.errors?.name && (
+            <span className="text-sm">{fetcher.data.errors.name}</span>
+          )}
+        </div>
+
+        <div>
+          <Textarea
+            placeholder="Type your message here"
+            name="message"
+            required
+          />
+          {fetcher.data?.errors?.message && (
+            <span className="text-sm">{fetcher.data.errors.message}</span>
+          )}
+        </div>
+
+        <Button type="submit">Send message</Button>
+      </div>
+    </fetcher.Form>
   );
 }

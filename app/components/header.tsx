@@ -21,7 +21,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/dialog";
-import { Contact } from "~/routes/resources/contact";
+import { Contact } from "~/routes/resources.contact";
 
 function NavLinks({ onAction }: { onAction: () => void }) {
   const links = [
