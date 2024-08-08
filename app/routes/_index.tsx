@@ -11,13 +11,12 @@ import {
 } from "lucide-react";
 import BlogList from "~/components/blog-list";
 import PorjectList from "~/components/project-list";
-import { Button, buttonVariants } from "~/components/ui/button";
+import { buttonVariants } from "~/components/ui/button";
 
 import profile from "~/content/images/profile.jpg";
 import { getBlogs } from "~/utils/blog.server";
 import { Contact } from "./resources.contact";
 import config from "~/content/config.json";
-import { jsonWithError } from "remix-toast";
 
 export const loader = async () => {
   return await getBlogs(3);
@@ -51,9 +50,7 @@ export default function Index() {
             <h1 className="font-semibold text-3xl ml-2 tracking-tight">
               {config.name}
             </h1>
-            <p className="text-muted-foreground ml-2 my-2">
-              {config.description}
-            </p>
+            <p className="text-primary/90 ml-2 my-2">{config.description}</p>
 
             {socialLinks.map((item, idx) => (
               <Link
@@ -76,30 +73,30 @@ export default function Index() {
           {config.education.map((v, i) => (
             <div className="mt-4" key={i}>
               <p className="font-semibold">{v.degree}</p>
-              <p className="text-primary/90">{`${v.university}, ${v.year}`}</p>
-              <p className="text-primary/90">{v.location}</p>
+              <p className="text-sm text-muted-foreground my-0.5">{`${v.university}, ${v.year}`}</p>
+              <p className="text-sm text-muted-foreground">{v.location}</p>
             </div>
           ))}
         </section>
-        <section className="border rounded-md p-4 md:col-span-2">
-          <div className="flex items-center">
-            <Search className="inline h-[1.2rem] w-[1.2rem] mr-3 text-muted-foreground" />
+        <section className="border rounded-md p-4 md:col-span-2 text-sm">
+          <div className="flex items-end">
+            <Search className="inline h-[1rem] w-[1rem] mr-3 text-muted-foreground" />
             <p className="inline">Seeking Full-time Roles</p>
           </div>
           <div className="flex items-center mt-4">
-            <FlaskConical className="inline h-[1.2rem] w-[1.2rem] mr-3 text-muted-foreground" />
+            <FlaskConical className="inline h-[1rem] w-[1rem] mr-3 text-muted-foreground" />
             <p className="inline">Machine Learning</p>
           </div>
           <div className="flex items-center mt-4">
-            <Briefcase className="inline h-[1.2rem] w-[1.2rem] mr-3 text-muted-foreground" />
+            <Briefcase className="inline h-[1rem] w-[1rem] mr-3 text-muted-foreground" />
             <p className="inline">Software Engineer Intern</p>
           </div>
           <div className="flex items-center mt-4">
-            <Building className="inline h-[1.2rem] w-[1.2rem] mr-3 text-muted-foreground" />
+            <Building className="inline h-[1rem] w-[1rem] mr-3 text-muted-foreground" />
             <p className="inline">CATT Lab</p>
           </div>
           <div className="flex items-center mt-4">
-            <MapPin className="inline h-[1.2rem] w-[1.2rem] mr-3 text-muted-foreground" />
+            <MapPin className="inline h-[1rem] w-[1rem] mr-3 text-muted-foreground" />
             <p className="inline">College Park, MD</p>
           </div>
         </section>
