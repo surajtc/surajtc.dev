@@ -159,13 +159,8 @@ export function Header() {
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>Contact</DialogTitle>
+                <DialogTitle>{"Let's Get in Touch!"}</DialogTitle>
                 <DialogDescription>
-                  <div className="my-2">
-                    <p>Let's connect! </p>
-                    <p>mail.surajtc@gmail.com</p>
-                  </div>
-
                   <Contact />
                 </DialogDescription>
               </DialogHeader>

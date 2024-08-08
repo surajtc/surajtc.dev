@@ -1,12 +1,8 @@
 import { Link } from "@remix-run/react";
 import { Separator } from "./ui/separator";
 import { buttonVariants } from "./ui/button";
-import {
-  ArrowUpRight,
-  ChevronsRight,
-  ExternalLink,
-  MoveUpRight,
-} from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import PROJECTS from "~/content/projects.json";
 
 export type Project = {
   title: string;
@@ -14,30 +10,6 @@ export type Project = {
   link: string;
   stack: string[];
 };
-
-const PROJECTS = [
-  {
-    title: "Efficient Document Retrieval with RAG for GPT-3.5",
-    description:
-      "This project explores using Retrieval-Augmented Generation (RAG) to enhance document retrieval capabilities for GPT-3.5. RAG leverages a dual approach, combining information retrieval techniques with the powerful language generation of GPT-3.5.",
-    link: "https://github.com/surajtc/ollama-rag",
-    stack: ["Ollama", "PrivateGPT", "Chroma DB"],
-  },
-  {
-    title: "LFW Face Recognition",
-    description:
-      "Evaluation of SVM and kNN classifiers using different data representation methods on Labeled Faces in the Wild (LFW) dataset.",
-    link: "https://github.com/surajtc/lfw-face-recognition",
-    stack: ["Matplotlib", "Numpy"],
-  },
-  {
-    title: "PhotoHive - A Photo Gallery App",
-    description:
-      "PhotoHive is a gallery app that allows users to upload, search, and manage photos using a serverless backend.",
-    link: "https://github.com/surajtc/PhotoHive",
-    stack: ["Aws Lambda", "React.js", "Flask"],
-  },
-];
 
 function ProjectItem({ project }: { project: Project }) {
   return (

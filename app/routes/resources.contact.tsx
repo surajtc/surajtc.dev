@@ -92,7 +92,15 @@ export function Contact() {
       ref={form}
       noValidate
     >
-      <div className="grid w-full gap-4">
+      <div className="text-base text-primary/90">
+        <p>
+          If you have any questions, inquiries, or just want to say hello, feel
+          free to reach out. You can contact me directly at{" "}
+          <strong>mail.surajtc[at]gmail.com</strong>. I'll get back to you as
+          soon as possible!
+        </p>
+      </div>
+      <div className="grid w-full gap-4 mt-6">
         <div>
           <Input placeholder="Email" type="email" name="email" required />
           {fetcher.data?.errors?.email && (

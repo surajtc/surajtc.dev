@@ -78,25 +78,25 @@ export default function Index() {
             </div>
           ))}
         </section>
-        <section className="border rounded-md p-4 md:col-span-2 text-sm">
-          <div className="flex items-end">
-            <Search className="inline h-[1rem] w-[1rem] mr-3 text-muted-foreground" />
+        <section className="border rounded-md p-4 md:col-span-2">
+          <div className="inline-flex items-center">
+            <Search className="inline h-[1.1rem] w-[1.1rem] mr-3 text-muted-foreground" />
             <p className="inline">Seeking Full-time Roles</p>
           </div>
-          <div className="flex items-center mt-4">
-            <FlaskConical className="inline h-[1rem] w-[1rem] mr-3 text-muted-foreground" />
+          <div className="inline-flex items-center mt-4">
+            <FlaskConical className="inline h-[1.1rem] w-[1.1rem] mr-3 text-muted-foreground" />
             <p className="inline">Machine Learning</p>
           </div>
-          <div className="flex items-center mt-4">
-            <Briefcase className="inline h-[1rem] w-[1rem] mr-3 text-muted-foreground" />
+          <div className="inline-flex items-center mt-4">
+            <Briefcase className="inline h-[1.1rem] w-[1.1rem] mr-3 text-muted-foreground" />
             <p className="inline">Software Engineer Intern</p>
           </div>
-          <div className="flex items-center mt-4">
-            <Building className="inline h-[1rem] w-[1rem] mr-3 text-muted-foreground" />
+          <div className="inline-flex items-center mt-4">
+            <Building className="inline h-[1.1rem] w-[1.1rem] mr-3 text-muted-foreground" />
             <p className="inline">CATT Lab</p>
           </div>
-          <div className="flex items-center mt-4">
-            <MapPin className="inline h-[1rem] w-[1rem] mr-3 text-muted-foreground" />
+          <div className="inline-flex items-center mt-4">
+            <MapPin className="inline h-[1.1rem] w-[1.1rem] mr-3 text-muted-foreground" />
             <p className="inline">College Park, MD</p>
           </div>
         </section>
@@ -136,7 +136,7 @@ export default function Index() {
       </div>
 
       <div className="p-4">
-        <Title title="Contact" />
+        <Title title="Let's Get in Touch!" />
         <div className="mt-4">
           <Contact />
         </div>
