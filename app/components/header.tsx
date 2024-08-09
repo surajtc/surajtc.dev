@@ -21,7 +21,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/dialog";
-import { Contact } from "~/routes/resources.contact";
+import { ContactForm } from "~/routes/resources.contact";
 
 function NavLinks({ onAction }: { onAction: () => void }) {
   const links = [
@@ -161,7 +161,7 @@ export function Header() {
               <DialogHeader>
                 <DialogTitle>{"Let's Get in Touch!"}</DialogTitle>
                 <DialogDescription>
-                  <Contact />
+                  <ContactForm />
                 </DialogDescription>
               </DialogHeader>
             </DialogContent>

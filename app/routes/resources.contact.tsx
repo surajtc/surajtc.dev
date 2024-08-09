@@ -75,7 +75,7 @@ export async function action({ request }: ActionFunctionArgs) {
   );
 }
 
-export function Contact() {
+export function ContactForm() {
   const fetcher = useFetcher<typeof action>();
   const form = useRef<HTMLFormElement>(null);
 

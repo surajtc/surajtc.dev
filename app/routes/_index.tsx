@@ -15,16 +15,13 @@ import { buttonVariants } from "~/components/ui/button";
 
 import profile from "~/content/images/profile.jpg";
 import { getBlogs } from "~/utils/blog.server";
-import { Contact } from "./resources.contact";
+import { ContactForm } from "./resources.contact";
 import config from "~/content/config.json";
+import { Section } from "~/components/section";
 
 export const loader = async () => {
   return await getBlogs(3);
 };
-
-export function Title({ title }: { title: string }) {
-  return <h3 className="text-2xl font-bold">{title}</h3>;
-}
 
 export default function Index() {
   const featuredBlogs = useLoaderData<typeof loader>();
@@ -38,7 +35,10 @@ export default function Index() {
   return (
     <>
       <div className="grid gap-3 md:grid-cols-5 py-6">
-        <section className="border rounded-md p-4 md:col-span-5 flex flex-col md:flex-row items-center gap-4">
+        <Section
+          variant="border"
+          className="md:col-span-5 flex flex-col md:flex-row items-center gap-4"
+        >
           <div className="h-40 w-40 aspect-square">
             <img
               src={profile}
@@ -67,18 +67,19 @@ export default function Index() {
               </Link>
             ))}
           </div>
-        </section>
-        <section className="border rounded-md p-4 md:col-span-3">
-          <Title title="Education" />
+        </Section>
+
+        <Section title="Education" variant="border" className="md:col-span-3">
           {config.education.map((v, i) => (
-            <div className="mt-4" key={i}>
+            <div className={i != 0 ? "mt-4" : ""} key={i}>
               <p className="font-semibold">{v.degree}</p>
               <p className="text-sm text-muted-foreground my-0.5">{`${v.university}, ${v.year}`}</p>
               <p className="text-sm text-muted-foreground">{v.location}</p>
             </div>
           ))}
-        </section>
-        <section className="border rounded-md p-4 md:col-span-2">
+        </Section>
+
+        <Section variant="border" className="md:col-span-2">
           <div className="inline-flex items-center">
             <Search className="inline h-[1.1rem] w-[1.1rem] mr-3 text-muted-foreground" />
             <p className="inline">Seeking Full-time Roles</p>
@@ -99,48 +100,36 @@ export default function Index() {
             <MapPin className="inline h-[1.1rem] w-[1.1rem] mr-3 text-muted-foreground" />
             <p className="inline">College Park, MD</p>
           </div>
-        </section>
+        </Section>
       </div>
 
-      <div className="p-4">
-        <Title title="About Me" />
-        <p className="mt-4">{config.about}</p>
-      </div>
+      <Section title="About">{config.about}</Section>
 
       {featuredBlogs.length && (
-        <div className="mt-6 p-4">
-          <Title title="Bolgs" />
-          <div>
-            <BlogList blogs={featuredBlogs} />
-            <Link
-              to="/blog"
-              className="font-bold text-sm text-center w-full block my-2"
-            >
-              See all
-            </Link>
-          </div>
-        </div>
-      )}
-
-      <div className="p-4">
-        <Title title="Projects" />
-        <div>
-          <PorjectList />
+        <Section title="Blogs">
+          <BlogList blogs={featuredBlogs} />
           <Link
-            to="/projects"
+            to="/blog"
             className="font-bold text-sm text-center w-full block my-2"
           >
             See all
           </Link>
-        </div>
-      </div>
+        </Section>
+      )}
 
-      <div className="p-4">
-        <Title title="Let's Get in Touch!" />
-        <div className="mt-4">
-          <Contact />
-        </div>
-      </div>
+      <Section title="Projects">
+        <PorjectList />
+        <Link
+          to="/projects"
+          className="font-bold text-sm text-center w-full block my-2"
+        >
+          See all
+        </Link>
+      </Section>
+
+      <Section title="Contact">
+        <ContactForm />
+      </Section>
     </>
   );
 }

@@ -13,8 +13,8 @@ export type Project = {
 
 function ProjectItem({ project }: { project: Project }) {
   return (
-    <div className="block">
-      <div className="flex justify-between items-top mt-6">
+    <div className="block w-full py-2">
+      <div className="flex justify-between items-top">
         <div>
           <h3 className="font-semibold pt-2">{project.title}</h3>
           <p className="text-muted-foreground text-sm mt-1">
