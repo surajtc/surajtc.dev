@@ -147,7 +147,7 @@ export function App() {
           </section>
           <div className="border-t mt-4">
             <footer className="max-w-3xl w-full mx-auto p-1 py-2">
-              <div className="flex justify-between text-sm text-muted-foreground">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span>
                   <Link
                     to={"https://github.com/surajtc/surajtc.dev"}
@@ -156,7 +156,7 @@ export function App() {
                     className="inline-flex items-center hover:underline"
                   >
                     Open-sourced on github
-                    <ArrowUpRight className="inline h-[0.9rem] w-[0.9rem]" />
+                    <ArrowUpRight className="inline h-[0.8rem] w-[0.8rem]" />
                   </Link>
                 </span>
                 <span>surajtc.dev &copy; {year}</span>

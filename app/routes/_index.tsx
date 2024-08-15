@@ -73,8 +73,8 @@ export default function Index() {
           {config.education.map((v, i) => (
             <div className={i != 0 ? "mt-4" : ""} key={i}>
               <p className="font-semibold">{v.degree}</p>
-              <p className="text-sm text-muted-foreground my-0.5">{`${v.university}, ${v.year}`}</p>
-              <p className="text-sm text-muted-foreground">{v.location}</p>
+              <p className="text-muted-foreground">{`${v.university}, ${v.year}`}</p>
+              <p className="text-muted-foreground">{v.location}</p>
             </div>
           ))}
         </Section>
