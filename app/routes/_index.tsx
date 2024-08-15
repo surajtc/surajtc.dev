@@ -73,31 +73,31 @@ export default function Index() {
           {config.education.map((v, i) => (
             <div className={i != 0 ? "mt-4" : ""} key={i}>
               <p className="font-semibold">{v.degree}</p>
-              <p className="text-muted-foreground">{`${v.university}, ${v.year}`}</p>
-              <p className="text-muted-foreground">{v.location}</p>
+              <p className="text-primary/90 text-sm mt-1">{`${v.university}, ${v.year}`}</p>
+              <p className="text-primary/90 text-sm">{v.location}</p>
             </div>
           ))}
         </Section>
 
         <Section variant="border" className="md:col-span-2">
           <div className="inline-flex items-center">
-            <Search className="inline h-[1.1rem] w-[1.1rem] mr-3 text-muted-foreground" />
+            <Search className="inline h-[1.1rem] w-[1.1rem] ml-3 md:ml-0 mr-3 text-muted-foreground" />
             <p className="inline">Seeking Full-time Roles</p>
           </div>
           <div className="inline-flex items-center mt-4">
-            <FlaskConical className="inline h-[1.1rem] w-[1.1rem] mr-3 text-muted-foreground" />
+            <FlaskConical className="inline h-[1.1rem] w-[1.1rem] ml-3 md:ml-0 mr-3 text-muted-foreground" />
             <p className="inline">Machine Learning</p>
           </div>
           <div className="inline-flex items-center mt-4">
-            <Briefcase className="inline h-[1.1rem] w-[1.1rem] mr-3 text-muted-foreground" />
+            <Briefcase className="inline h-[1.1rem] w-[1.1rem] ml-3 md:ml-0 mr-3 text-muted-foreground" />
             <p className="inline">Software Engineer Intern</p>
           </div>
           <div className="inline-flex items-center mt-4">
-            <Building className="inline h-[1.1rem] w-[1.1rem] mr-3 text-muted-foreground" />
+            <Building className="inline h-[1.1rem] w-[1.1rem] ml-3 md:ml-0 mr-3 text-muted-foreground" />
             <p className="inline">CATT Lab</p>
           </div>
           <div className="inline-flex items-center mt-4">
-            <MapPin className="inline h-[1.1rem] w-[1.1rem] mr-3 text-muted-foreground" />
+            <MapPin className="inline h-[1.1rem] w-[1.1rem] ml-3 md:ml-0 mr-3 text-muted-foreground" />
             <p className="inline">College Park, MD</p>
           </div>
         </Section>

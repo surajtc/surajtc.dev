@@ -159,8 +159,8 @@ export function Header() {
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>{"Let's Get in Touch!"}</DialogTitle>
-                <DialogDescription>
+                <DialogTitle>{"Contact"}</DialogTitle>
+                <DialogDescription className="text-sm pt-3">
                   <ContactForm />
                 </DialogDescription>
               </DialogHeader>
