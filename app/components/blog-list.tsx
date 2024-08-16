@@ -15,7 +15,11 @@ function BlogItem({ blog }: { blog: Blog }) {
   const date = new Date(blog.frontmatter.date || "");
 
   return (
-    <Link to={`/blog/${blog.slug}`} className="group block w-full py-2">
+    <Link
+      to={`/blog/${blog.slug}`}
+      className="group block w-full py-2"
+      prefetch="viewport"
+    >
       <h3 className="group-hover:underline font-semibold">
         {blog.frontmatter.meta?.title ?? blog.slug}
       </h3>
