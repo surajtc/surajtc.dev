@@ -128,6 +128,11 @@ export default function Index() {
       </Section>
 
       <Section title="Contact">
+        <p className="text-primary/90">
+          If you have any questions, inquiries, or just want to say hello, feel
+          free to reach out at <strong> mail.surajtc[at]gmail.com</strong>. I'll
+          get back to you as soon as possible!
+        </p>
         <ContactForm />
       </Section>
     </>

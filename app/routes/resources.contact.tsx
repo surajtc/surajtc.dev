@@ -92,16 +92,6 @@ export function ContactForm() {
       ref={form}
       noValidate
     >
-      <div className="text-primary/90">
-        <p>
-          If you have any questions, inquiries, or just want to say hello, feel
-          free to reach out. I'll get back to you as soon as possible!
-          <span className="block pt-2">
-            You can contact me directly at
-            <strong> mail.surajtc[at]gmail.com</strong>.
-          </span>
-        </p>
-      </div>
       <div className="grid w-full gap-4 mt-6">
         <div>
           <Input placeholder="Email" type="email" name="email" required />
