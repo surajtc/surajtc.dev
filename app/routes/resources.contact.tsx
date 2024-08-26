@@ -16,8 +16,16 @@ export async function action({ request }: ActionFunctionArgs) {
   const email = String(formData.get("email"));
   const name = String(formData.get("name"));
   const message = String(formData.get("message"));
+  const address = String(formData.get("address"));
 
   const errors: { [key: string]: string } = {};
+
+  if (address.trim().length !== 0) {
+    return jsonWithError(
+      { ok: false, errors },
+      { message: "There was an error while sending your message." }
+    );
+  }
 
   if (!/\S+@\S+\.\S+/.test(email)) {
     errors.email = "Enter a valid email address";
@@ -93,17 +101,21 @@ export function ContactForm() {
       noValidate
     >
       <div className="grid w-full gap-4 mt-6">
+        <div className="absolute -z-50 invisible">
+          <Input placeholder="Address" name="address" />
+        </div>
+
         <div>
           <Input placeholder="Email" type="email" name="email" required />
           {fetcher.data?.errors?.email && (
-            <span className="text-sm">{fetcher.data.errors.email}</span>
+            <span className="text-xs">{fetcher.data.errors.email}</span>
           )}
         </div>
 
         <div>
           <Input placeholder="Full Name" name="name" required />
           {fetcher.data?.errors?.name && (
-            <span className="text-sm">{fetcher.data.errors.name}</span>
+            <span className="text-xs">{fetcher.data.errors.name}</span>
           )}
         </div>
 
@@ -114,7 +126,7 @@ export function ContactForm() {
             required
           />
           {fetcher.data?.errors?.message && (
-            <span className="text-sm">{fetcher.data.errors.message}</span>
+            <span className="text-xs">{fetcher.data.errors.message}</span>
           )}
         </div>
 
