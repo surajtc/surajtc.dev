@@ -9,22 +9,22 @@ import {
   MapPin,
   Search,
 } from "lucide-react";
-import BlogList from "~/components/blog-list";
-import PorjectList from "~/components/project-list";
 import { buttonVariants } from "~/components/ui/button";
 
 import profile from "~/content/images/profile.jpg";
+import projects from "~/content/projects.json";
 import { getBlogs } from "~/utils/blog.server";
 import { ContactForm } from "./resources.contact";
 import config from "~/content/config.json";
 import { Section } from "~/components/section";
+import { List } from "~/components/list";
 
 export const loader = async () => {
   return await getBlogs(3);
 };
 
 export default function Index() {
-  const featuredBlogs = useLoaderData<typeof loader>();
+  const blogs = useLoaderData<typeof loader>();
 
   const socialLinks = [
     { link: "mailto:mail.surajtc@gmail.com", icon: Mail },
@@ -105,33 +105,47 @@ export default function Index() {
 
       <Section title="About">{config.about}</Section>
 
-      {featuredBlogs.length && (
+      {blogs && (
         <Section title="Blogs">
-          <BlogList blogs={featuredBlogs} />
-          <Link
-            to="/blog"
-            className="font-bold text-sm text-center w-full block my-2"
-          >
-            See all
-          </Link>
+          <List
+            list={blogs.map((v) => ({
+              title: v.frontmatter.meta?.title || "",
+              subtitle: new Date(v.frontmatter.date || "").toLocaleDateString(
+                "en-US",
+                {
+                  year: "numeric",
+                  month: "long",
+                  day: "2-digit",
+                }
+              ),
+              description: v.frontmatter.meta?.description || "",
+              link: v.slug,
+            }))}
+            viewAll="/blog"
+          />
         </Section>
       )}
 
       <Section title="Projects">
-        <PorjectList />
-        <Link
-          to="/projects"
-          className="font-bold text-sm text-center w-full block my-2"
-        >
-          See all
-        </Link>
+        <List
+          list={projects.slice(0,3).map((v) => ({
+            title: v.title,
+            subtitle: v.stack.join(", "),
+            description: v.description,
+            button: {
+              text: "GitHub",
+              link: v.link,
+            },
+          }))}
+          viewAll="/projects"
+        />
       </Section>
 
       <Section title="Contact">
         <p className="text-primary/90">
           If you have any questions, inquiries, or just want to say hello, feel
-          free to reach out at <strong> mail.surajtc[at]gmail.com</strong>. I'll
-          get back to you as soon as possible!
+          free to reach out at <strong> mail.surajtc[at]gmail.com</strong>.
+          I&apos;ll get back to you as soon as possible!
         </p>
         <ContactForm />
       </Section>

@@ -142,11 +142,11 @@ export function App() {
 
         <Header />
         <main className="flex flex-col flex-1 overflow-y-scroll">
-          <section className="flex-1 max-w-3xl w-full mx-auto px-1 pt-3">
+          <section className="flex-1 max-w-3xl w-full mx-auto px-2 pt-3">
             <Outlet />
           </section>
           <div className="border-t mt-4">
-            <footer className="max-w-3xl w-full mx-auto p-1 py-2">
+            <footer className="max-w-3xl w-full mx-auto px-6 py-2">
               <div className="flex justify-between text-xs text-muted-foreground">
                 <span>
                   <Link
@@ -155,7 +155,7 @@ export function App() {
                     rel="noreferrer"
                     className="inline-flex items-center hover:underline"
                   >
-                    Open-sourced on github
+                    View on GitHub
                     <ArrowUpRight className="inline h-[0.8rem] w-[0.8rem]" />
                   </Link>
                 </span>

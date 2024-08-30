@@ -54,7 +54,7 @@ function NavLinks({ onAction }: { onAction: () => void }) {
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [, setIsScrolled] = useState(false);
 
   const handleClose = () => {
     setIsOpen(false);
@@ -83,7 +83,7 @@ export function Header() {
         "transition-all sticky top-0 z-10 bg-background/50 backdrop-blur-md border-b"
       )}
     >
-      <section className="transition-all max-w-3xl mx-auto flex justify-between items-center px-1 py-2">
+      <section className="transition-all max-w-3xl mx-auto flex justify-between items-center px-6 py-2">
         {/* <div className="flex justify-between items-center gap-6">
           <NavLink to="/"> */}
         {/* <Logo className="h-[1.5rem] w-[1.5rem] fill-foreground inline-block pb-[0.15rem] pl-2 md:pl-0" /> */}
@@ -95,9 +95,11 @@ export function Header() {
         {/* </div> */}
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger className="block md:hidden">
-            <div className={buttonVariants({ variant: "ghost", size: "icon" })}>
-              <Menu />
-            </div>
+            <Button variant="ghost" size="icon">
+              <Menu  />
+              <span className="sr-only">Menu</span>
+            </Button>
+
           </SheetTrigger>
           <SheetContent side="left" className="block md:hidden">
             <SheetHeader>
@@ -107,8 +109,10 @@ export function Header() {
                   {/* <p className="inline-block font-bold">surajtc.dev</p> */}
                 </NavLink>
                 <SheetClose>
-                  <X className="h-4 w-4" />
-                  <span className="sr-only">Close</span>
+                  <Button variant="ghost" size="icon">
+                    <X className="h-[1.2rem] w-[1.2rem]" />
+                    <span className="sr-only">Close</span>
+                  </Button>
                 </SheetClose>
               </SheetTitle>
             </SheetHeader>
