@@ -103,10 +103,12 @@ export default function Index() {
         </Section>
       </div>
 
-      <Section title="About">{config.about}</Section>
+      <Section title="About" className="mb-2">
+        {config.about}
+      </Section>
 
       {blogs && (
-        <Section title="Blogs">
+        <Section title="Blogs" className="mb-2">
           <List
             list={blogs.map((v) => ({
               title: v.frontmatter.meta?.title || "",
@@ -119,16 +121,16 @@ export default function Index() {
                 }
               ),
               description: v.frontmatter.meta?.description || "",
-              link: v.slug,
+              link: `/blog/${v.slug}`,
             }))}
             viewAll="/blog"
           />
         </Section>
       )}
 
-      <Section title="Projects">
+      <Section title="Projects" className="mb-2">
         <List
-          list={projects.slice(0,3).map((v) => ({
+          list={projects.slice(0, 3).map((v) => ({
             title: v.title,
             subtitle: v.stack.join(", "),
             description: v.description,
@@ -141,7 +143,7 @@ export default function Index() {
         />
       </Section>
 
-      <Section title="Contact">
+      <Section title="Contact" className="mb-2">
         <p className="text-primary/90">
           If you have any questions, inquiries, or just want to say hello, feel
           free to reach out at <strong> mail.surajtc[at]gmail.com</strong>.

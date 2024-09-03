@@ -2,6 +2,7 @@ import { Link } from "@remix-run/react";
 import { ArrowUpRight } from "lucide-react";
 import { buttonVariants } from "./ui/button";
 import { Separator } from "./ui/separator";
+import ShowMore from "./showmore";
 
 type ListItemProps = {
   title: string;
@@ -43,9 +44,12 @@ export function ListItem({
         )}
       </div>
 
-      <p className="min-w-full pt-4 text-primary/90 line-clamp-2">
+      {/* <p className="min-w-full pt-4 text-primary/90 line-clamp-2">
         {description}
-      </p>
+      </p> */}
+
+      <ShowMore text={description} />
+
       <Separator className="my-4" />
     </div>
   );

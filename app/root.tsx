@@ -141,6 +141,7 @@ export function App() {
         )}
 
         <Header />
+        {/* <main className="flex flex-col flex-1 overflow-y-scroll bg-[radial-gradient(hsl(var(--muted))_1px,transparent_1px)] bg-[length:28px_28px]"> */}
         <main className="flex flex-col flex-1 overflow-y-scroll">
           <section className="flex-1 max-w-3xl w-full mx-auto px-2 pt-3">
             <Outlet />
