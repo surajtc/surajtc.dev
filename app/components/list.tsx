@@ -44,11 +44,13 @@ export function ListItem({
         )}
       </div>
 
-      {/* <p className="min-w-full pt-4 text-primary/90 line-clamp-2">
-        {description}
-      </p> */}
-
-      <ShowMore text={description} />
+      {button ? (
+        <ShowMore text={description} />
+      ) : (
+        <p className="min-w-full pt-4 text-primary/90 line-clamp-2">
+          {description}
+        </p>
+      )}
 
       <Separator className="my-4" />
     </div>

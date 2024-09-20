@@ -26,6 +26,7 @@ import {
 import { themeSessionResolver } from "./sessions.server";
 import stylesheet from "~/tailwind.css";
 import sonnerStyles from "~/sonner.css";
+import customStyles from "~/custom.css"; // Add this line
 import { Header } from "~/components/header";
 import { useEffect } from "react";
 import { Toaster, toast as notify } from "sonner";
@@ -37,6 +38,7 @@ type ToasterProps = React.ComponentProps<typeof Toaster>;
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
   { rel: "stylesheet", href: sonnerStyles },
+  { rel: "stylesheet", href: customStyles }, // Add this line
   { rel: "preconnect", href: "https://rsms.me/" },
   { rel: "stylesheet", href: "https://rsms.me/inter/inter.css" },
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
@@ -141,10 +143,11 @@ export function App() {
         )}
 
         <Header />
-        {/* <main className="flex flex-col flex-1 overflow-y-scroll bg-[radial-gradient(hsl(var(--muted))_1px,transparent_1px)] bg-[length:28px_28px]"> */}
-        <main className="flex flex-col flex-1 overflow-y-scroll">
-          <section className="flex-1 max-w-3xl w-full mx-auto px-2 pt-3">
-            <Outlet />
+        <main className="flex flex-col flex-1 overflow-y-auto">
+          <section className="flex flex-col flex-1 max-w-3xl w-full mx-auto px-2 pt-3">
+            <div className="flex-1">
+              <Outlet />
+            </div>
           </section>
           <div className="border-t mt-4">
             <footer className="max-w-3xl w-full mx-auto px-6 py-2">

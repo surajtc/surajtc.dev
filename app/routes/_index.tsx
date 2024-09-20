@@ -39,11 +39,11 @@ export default function Index() {
           variant="border"
           className="md:col-span-5 flex flex-col md:flex-row items-center gap-4"
         >
-          <div className="h-40 w-40 aspect-square">
+          <div className="max-w-40 aspect-square">
             <img
               src={profile}
               alt="profile"
-              className="h-full aspect-square object-cover object-center rounded-full overflow-hidden"
+              className="w-full aspect-square object-cover object-center rounded-full"
             />
           </div>
           <div className="text-center md:text-left">
