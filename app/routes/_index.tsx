@@ -1,122 +1,156 @@
 import { Link, useLoaderData } from "@remix-run/react";
 import {
   Briefcase,
+  Building,
+  FlaskConical,
   Github,
-  GraduationCap,
   Linkedin,
   Mail,
   MapPin,
-  User,
+  Search,
 } from "lucide-react";
-import BlogList from "~/components/blog-list";
 import { buttonVariants } from "~/components/ui/button";
-import { Separator } from "~/components/ui/separator";
 
 import profile from "~/content/images/profile.jpg";
+import projects from "~/content/projects.json";
 import { getBlogs } from "~/utils/blog.server";
+import { ContactForm } from "./resources.contact";
+import config from "~/content/config.json";
+import { Section } from "~/components/section";
+import { List } from "~/components/list";
 
 export const loader = async () => {
   return await getBlogs(3);
 };
 
 export default function Index() {
-  const featuredBlogs = useLoaderData<typeof loader>();
-
-  const bioData = [
-    { title: "Suraj T C", icon: User },
-    { title: "Masters Student, CS Engineer", icon: Briefcase },
-    { title: "University of Maryland", icon: GraduationCap },
-    { title: "College Park, MD", icon: MapPin },
-  ];
+  // const blogs = useLoaderData<typeof loader>();
 
   const socialLinks = [
     { link: "mailto:mail.surajtc@gmail.com", icon: Mail },
     { link: "https://www.linkedin.com/in/surajtc/", icon: Linkedin },
     { link: "https://github.com/surajtc", icon: Github },
   ];
+
   return (
-    <div className="flex flex-col md:flex-row-reverse gap-x-12 pt-8 px-2 md:px-0">
-      <section className="flex gap-2 md:flex-col w-full md:w-min">
-        <div className="min-w-12 max-w-64">
-          <img
-            src={profile}
-            alt="profile"
-            className="object-cover object-center rounded overflow-hidden"
-          />
-        </div>
-        <div className="flex flex-col justify-between text-xs md:text-base whitespace-nowrap gap-1 md:gap-4">
-          {bioData.map((item, idx) => (
-            <div key={idx} className="flex">
-              <span className="px-2 ">
-                {
-                  <item.icon className="inline h-[1rem] w-[1rem] md:h-[1.2rem] md:w-[1.2rem] text-muted-foreground" />
-                }
-              </span>
-              <p className={idx == 0 ? "font-semibold" : ""}>{item.title}</p>
+    <>
+      <div className="grid gap-3 md:grid-cols-5 py-6">
+        <Section
+          variant="border"
+          className="md:col-span-5 flex flex-col md:flex-row items-center gap-4"
+        >
+          <div className="max-w-40 aspect-square">
+            <img
+              src={profile}
+              alt="profile"
+              className="w-full aspect-square object-cover object-center rounded-full"
+            />
+          </div>
+          <div className="text-center md:text-left">
+            <h1 className="font-semibold text-3xl ml-2 tracking-tight">
+              {config.name}
+            </h1>
+            <p className="text-primary/90 ml-2 my-2">{config.description}</p>
+
+            {socialLinks.map((item, idx) => (
+              <Link
+                key={idx}
+                to={item.link}
+                className={`${buttonVariants({
+                  variant: "ghost",
+                  size: "icon",
+                })} mr-2`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <item.icon className="inline h-[1.2rem] w-[1.2rem]" />
+              </Link>
+            ))}
+          </div>
+        </Section>
+
+        <Section title="Education" variant="border" className="md:col-span-3">
+          {config.education.map((v, i) => (
+            <div className={i != 0 ? "mt-4" : ""} key={i}>
+              <p className="font-semibold">{v.degree}</p>
+              <p className="text-primary/90 text-sm mt-1">{`${v.university}, ${v.year}`}</p>
+              <p className="text-primary/90 text-sm">{v.location}</p>
             </div>
           ))}
-          <div>
-            <Separator className="mb-2" />
+        </Section>
 
-            <div className="flex gap-2">
-              {socialLinks.map((item, idx) => (
-                <Link
-                  key={idx}
-                  to={item.link}
-                  className={buttonVariants({ variant: "ghost", size: "icon" })}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <item.icon className="inline h-[1.2rem] w-[1.2rem]" />
-                </Link>
-              ))}
-            </div>
+        <Section variant="border" className="md:col-span-2">
+          <div className="inline-flex items-center">
+            <Search className="inline h-[1.1rem] w-[1.1rem] ml-3 md:ml-0 mr-3 text-muted-foreground" />
+            <p className="inline">Seeking Full-time Roles</p>
           </div>
-        </div>
-      </section>
-      <div className="flex-1">
-        <section className="md:row-start-1">
-          <h3 className="pt-4">{"Hello!"}</h3>
-          <h1 className="font-semibold text-4xl pt-4 pb-2">{"I'm Suraj,"}</h1>
-          <h2 className=" text-xl pb-2 text-muted-foreground">
-            {"aspiring Software Engineer."}
-          </h2>
-          <p className="py-4">
-            {"I enjoy making and breaking things with code."}
-            <br />
-            {
-              "In this space, I share what I'm working on, what I've learned, and even epic failures along the way."
-            }
-          </p>
-          <p className="pt-2">
-            {"Click below to learn more about me or say hello."}
-          </p>
-          <div className="pt-4 pb-16 flex gap-4">
-            <Link to="/about" className={buttonVariants()}>
-              <span className="md:w-20 text-center">About Me</span>
-            </Link>
-            <Link
-              to="/contact"
-              className={buttonVariants({ variant: "secondary" })}
-            >
-              <span className="md:w-20 text-center">Contact</span>
-            </Link>
+          <div className="inline-flex items-center mt-4">
+            <FlaskConical className="inline h-[1.1rem] w-[1.1rem] ml-3 md:ml-0 mr-3 text-muted-foreground" />
+            <p className="inline">Machine Learning</p>
           </div>
-        </section>
-
-        {featuredBlogs.length && (
-          <section className="">
-            <h3 className="text-2xl font-bold pt-4">Recent Blogs</h3>
-            <BlogList blogs={featuredBlogs} />
-            <Link
-              to="/blog"
-              className="font-bold text-sm text-center w-full block"
-            >
-              See all
-            </Link>
-          </section>
-        )}
+          <div className="inline-flex items-center mt-4">
+            <Briefcase className="inline h-[1.1rem] w-[1.1rem] ml-3 md:ml-0 mr-3 text-muted-foreground" />
+            <p className="inline">Software Engineer Intern</p>
+          </div>
+          <div className="inline-flex items-center mt-4">
+            <Building className="inline h-[1.1rem] w-[1.1rem] ml-3 md:ml-0 mr-3 text-muted-foreground" />
+            <p className="inline">CATT Lab</p>
+          </div>
+          <div className="inline-flex items-center mt-4">
+            <MapPin className="inline h-[1.1rem] w-[1.1rem] ml-3 md:ml-0 mr-3 text-muted-foreground" />
+            <p className="inline">College Park, MD</p>
+          </div>
+        </Section>
       </div>
-    </div>
+
+      <Section title="About" className="mb-2">
+        {config.about}
+      </Section>
+
+       {/* {blogs && (
+        <Section title="Blogs" className="mb-2">
+          <List
+            list={blogs.map((v) => ({
+              title: v.frontmatter.meta?.title || "",
+              subtitle: new Date(v.frontmatter.date || "").toLocaleDateString(
+                "en-US",
+                {
+                  year: "numeric",
+                  month: "long",
+                  day: "2-digit",
+                }
+              ),
+              description: v.frontmatter.meta?.description || "",
+              link: `/blog/${v.slug}`,
+            }))}
+            viewAll="/blog"
+          />
+        </Section>
+      )} */}
+
+      <Section title="Projects" className="mb-2">
+        <List
+          list={projects.slice(0, 3).map((v) => ({
+            title: v.title,
+            subtitle: v.stack.join(", "),
+            description: v.description,
+            button: {
+              text: "GitHub",
+              link: v.link,
+            },
+          }))}
+          viewAll="/projects"
+        />
+      </Section>
+
+      <Section title="Contact" className="mb-2">
+        <p className="text-primary/90">
+          If you have any questions, inquiries, or just want to say hello, feel
+          free to reach out at <strong> mail.surajtc[at]gmail.com</strong>.
+          I&apos;ll get back to you as soon as possible!
+        </p>
+        <ContactForm />
+      </Section>
+    </>
   );
 }

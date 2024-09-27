@@ -70,11 +70,11 @@ export default function Blog() {
   const BlogContent = useMemo(() => getMDXComponent(code), [code]);
 
   return (
-    <>
+    <div className="p-4">
       <BlogHeader frontmatter={frontmatter} />
       <article className="prose dark:prose-invert min-w-full prose-pre:p-0">
         <BlogContent />
       </article>
-    </>
+    </div>
   );
 }

@@ -1,0 +1,19 @@
+{
+  "name": "Suraj T C",
+  "description": "Machine Learning graduate and Software Engineer excited to learn and contribute to innovative projects.",  
+  "about": "Hi, I’m Suraj, an aspiring Machine Learning Engineer with a background in Software Development. I enjoy making and breaking things with code. Here, I share what I'm working on, what I've learned, and even epic failures along the way.",
+  "education": [
+    {
+      "degree": "Master's in Machine Learning",
+      "university": "University of Marylad",
+      "year": "2024",
+      "location": "College Park, USA"
+    },
+    {
+      "degree": "Bachelors's in Computer Science",
+      "university": " Visveswaraya Technological Univerisy",
+      "year": "2021",
+      "location": "Mysore, India"
+    }
+  ]
+}

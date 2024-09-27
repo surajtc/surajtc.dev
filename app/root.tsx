@@ -12,6 +12,7 @@ import type {
   MetaFunction,
 } from "@remix-run/node";
 import {
+  Link,
   Links,
   LiveReload,
   Meta,
@@ -24,22 +25,29 @@ import {
 } from "@remix-run/react";
 import { themeSessionResolver } from "./sessions.server";
 import stylesheet from "~/tailwind.css";
+import sonnerStyles from "~/sonner.css";
+import customStyles from "~/custom.css"; // Add this line
 import { Header } from "~/components/header";
 import { useEffect } from "react";
 import { Toaster, toast as notify } from "sonner";
 import * as gtag from "~/utils/gtags.client";
+import { ArrowUpRight } from "lucide-react";
 
 type ToasterProps = React.ComponentProps<typeof Toaster>;
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
+  { rel: "stylesheet", href: sonnerStyles },
+  { rel: "stylesheet", href: customStyles }, // Add this line
+  { rel: "preconnect", href: "https://rsms.me/" },
+  { rel: "stylesheet", href: "https://rsms.me/inter/inter.css" },
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
 ];
 
 export const meta: MetaFunction = () => {
   return [
     {
-      title: "Suraj T C | Portfolio | Machine Learning",
+      title: "Suraj T C - Software Engineer - Machine Learning",
     },
     {
       name: "description",
@@ -135,16 +143,30 @@ export function App() {
         )}
 
         <Header />
-        <main className="flex flex-col flex-1 overflow-y-scroll">
-          <section className="flex-1 max-w-4xl w-full mx-auto px-1 pt-3">
-            <Outlet />
-          </section>
-          <footer className="max-w-4xl w-full mx-auto p-1 pt-8">
-            <div className="flex justify-between text-sm text-muted-foreground">
-              <span>surajtc.dev</span>
-              <span>&copy; {year}</span>
+        <main className="flex flex-col flex-1 overflow-y-auto">
+          <section className="flex flex-col flex-1 max-w-3xl w-full mx-auto px-2 pt-3">
+            <div className="flex-1">
+              <Outlet />
             </div>
-          </footer>
+          </section>
+          <div className="border-t mt-4">
+            <footer className="max-w-3xl w-full mx-auto px-6 py-2">
+              <div className="flex justify-between text-xs text-muted-foreground">
+                <span>
+                  <Link
+                    to={"https://github.com/surajtc/surajtc.dev"}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center hover:underline"
+                  >
+                    View on GitHub
+                    <ArrowUpRight className="inline h-[0.8rem] w-[0.8rem]" />
+                  </Link>
+                </span>
+                <span>surajtc.dev &copy; {year}</span>
+              </div>
+            </footer>
+          </div>
         </main>
         <ScrollRestoration />
         <Scripts />
