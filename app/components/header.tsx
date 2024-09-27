@@ -26,7 +26,7 @@ import { ContactForm } from "~/routes/resources.contact";
 function NavLinks({ onAction }: { onAction: () => void }) {
   const links = [
     { title: "Home", path: "/" },
-    { title: "Blog", path: "/blog" },
+    // { title: "Blog", path: "/blog" },
     { title: "Projects", path: "/projects" },
   ];
 

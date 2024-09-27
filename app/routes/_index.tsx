@@ -24,7 +24,7 @@ export const loader = async () => {
 };
 
 export default function Index() {
-  const blogs = useLoaderData<typeof loader>();
+  // const blogs = useLoaderData<typeof loader>();
 
   const socialLinks = [
     { link: "mailto:mail.surajtc@gmail.com", icon: Mail },
@@ -107,7 +107,7 @@ export default function Index() {
         {config.about}
       </Section>
 
-      {blogs && (
+       {/* {blogs && (
         <Section title="Blogs" className="mb-2">
           <List
             list={blogs.map((v) => ({
@@ -126,7 +126,7 @@ export default function Index() {
             viewAll="/blog"
           />
         </Section>
-      )}
+      )} */}
 
       <Section title="Projects" className="mb-2">
         <List
