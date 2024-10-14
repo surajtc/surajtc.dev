@@ -1,6 +1,20 @@
-import { Form, Link } from "@remix-run/react";
+import { json, LoaderFunctionArgs } from "@remix-run/cloudflare";
+import { Form, Link, useLoaderData } from "@remix-run/react";
+import { getSession } from "~/services/session.server";
+
+type AuthError = {
+  error?: { message: string };
+};
+
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  const session = await getSession(request.headers.get("Cookie"));
+  const error = session.get("auth-error");
+
+  return json<AuthError>({ error });
+};
 
 export default function Login() {
+  const { error } = useLoaderData<typeof loader>();
   return (
     <div className="m-8 space-y-4">
       <h1>Login</h1>
@@ -15,6 +29,8 @@ export default function Login() {
           </button>
         </Form>
       </div>
+
+      <p>{error && error.message}</p>
     </div>
   );
 }

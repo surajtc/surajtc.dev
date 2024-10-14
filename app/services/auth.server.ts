@@ -1,4 +1,4 @@
-import { Authenticator } from "remix-auth";
+import { Authenticator, AuthorizationError } from "remix-auth";
 import { sessionStorage } from "~/services/session.server";
 import {
   GitHubExtraParams,
@@ -11,7 +11,7 @@ export const authenticator = (context: AppLoadContext) => {
   const auth = new Authenticator<{
     profile: GitHubProfile;
     tokens: GitHubExtraParams;
-  }>(sessionStorage);
+  }>(sessionStorage, { sessionKey: "auth", sessionErrorKey: "auth-error" });
 
   auth.use(
     new GitHubStrategy(
@@ -21,7 +21,9 @@ export const authenticator = (context: AppLoadContext) => {
         redirectURI: context.cloudflare.env.GITHUB_REDIRECT_URI!,
       },
       async ({ profile, tokens }) => {
-        console.log("HERE", context.cloudflare.env.GITHUB_CLIENT_ID);
+        if (profile.id !== context.cloudflare.env.GITHUB_ACCOUNT_ID) {
+          throw new AuthorizationError("Invalid Credentials");
+        }
 
         return { profile, tokens };
       }
