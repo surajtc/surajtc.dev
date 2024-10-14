@@ -4,7 +4,9 @@ import {
   type MetaFunction,
 } from "@remix-run/cloudflare";
 import { Link, useLoaderData } from "@remix-run/react";
-import { useState } from "react";
+import { drizzle } from "drizzle-orm/d1";
+import React, { useState } from "react";
+import { blogs } from "~/drizzle/schema.server";
 
 export const meta: MetaFunction = () => {
   return [
@@ -14,20 +16,20 @@ export const meta: MetaFunction = () => {
 };
 
 export const loader = async ({ context }: LoaderFunctionArgs) => {
-  const uri = context.cloudflare.env.GITHUB_REDIRECT_URI || "Not Found";
+  const db = drizzle(context.cloudflare.env.DB);
+  const content = await db.select().from(blogs);
 
-  return json({ uri });
+  return json({ blogs: content });
 };
 
 export default function Index() {
   const [state, setState] = useState(0);
-  const data = useLoaderData<typeof loader>();
+  const { blogs } = useLoaderData<typeof loader>();
 
   return (
     <div className="m-8 space-y-4">
       <h1>Cloudflare Test</h1>
       <p>Node Env: {process.env.NODE_ENV}</p>
-      <p>GitHub URI: {data.uri}</p>
       <div className="space-x-2">
         <button
           className="bg-white text-black p-1 rounded"
@@ -39,6 +41,25 @@ export default function Index() {
         <Link to="/admin" className="bg-white text-black p-1 rounded">
           Admin Dashboard
         </Link>
+      </div>
+      <div className="grid grid-cols-5">
+        <p>ID</p>
+        <p>SLUG</p>
+        <p>TITLE</p>
+        <p>CREATED</p>
+        <p></p>
+      </div>
+
+      <div className="grid grid-cols-5 gap-2">
+        {blogs.map((i) => (
+          <React.Fragment key={i.id}>
+            <p>{i.id}</p>
+            <p>{i.slug}</p>
+            <p>{i.title}</p>
+            <p>{i.createdAt}</p>
+            <button className="bg-white text-black p-1 rounded">EDIT</button>
+          </React.Fragment>
+        ))}
       </div>
     </div>
   );
