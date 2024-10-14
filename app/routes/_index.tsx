@@ -3,7 +3,7 @@ import {
   LoaderFunctionArgs,
   type MetaFunction,
 } from "@remix-run/cloudflare";
-import { useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData } from "@remix-run/react";
 import { useState } from "react";
 
 export const meta: MetaFunction = () => {
@@ -28,13 +28,17 @@ export default function Index() {
       <h1>Cloudflare Test</h1>
       <p>Node Env: {process.env.NODE_ENV}</p>
       <p>GitHub URI: {data.uri}</p>
-      <div>
+      <div className="space-x-2">
         <button
           className="bg-white text-black p-1 rounded"
           onClick={() => setState((p) => p + 1)}
         >
           Count: {state}
         </button>
+
+        <Link to="/admin" className="bg-white text-black p-1 rounded">
+          Admin Dashboard
+        </Link>
       </div>
     </div>
   );

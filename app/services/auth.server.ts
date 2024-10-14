@@ -5,23 +5,28 @@ import {
   GitHubProfile,
   GitHubStrategy,
 } from "remix-auth-github";
+import type { AppLoadContext } from "@remix-run/cloudflare";
 
-export const authenticator = new Authenticator<{
-  profile: GitHubProfile;
-  tokens: GitHubExtraParams;
-}>(sessionStorage);
+export const authenticator = (context: AppLoadContext) => {
+  const auth = new Authenticator<{
+    profile: GitHubProfile;
+    tokens: GitHubExtraParams;
+  }>(sessionStorage);
 
-authenticator.use(
-  new GitHubStrategy(
-    {
-      clientId: process.env.GITHUB_CLIENT_ID || "",
-      clientSecret: process.env.GITHUB_CLIENT_SECRET || "",
-      redirectURI: process.env.GITHUB_REDIRECT_URI || "",
-    },
-    async ({ profile, tokens }) => {
-      console.log("HERE", process.env.GITHUB_CLIENT_ID);
+  auth.use(
+    new GitHubStrategy(
+      {
+        clientId: context.cloudflare.env.GITHUB_CLIENT_ID!,
+        clientSecret: context.cloudflare.env.GITHUB_CLIENT_SECRET!,
+        redirectURI: context.cloudflare.env.GITHUB_REDIRECT_URI!,
+      },
+      async ({ profile, tokens }) => {
+        console.log("HERE", context.cloudflare.env.GITHUB_CLIENT_ID);
 
-      return { profile, tokens };
-    }
-  )
-);
+        return { profile, tokens };
+      }
+    )
+  );
+
+  return auth;
+};
