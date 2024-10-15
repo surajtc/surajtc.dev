@@ -62,8 +62,7 @@ export default function Index() {
         ))}
       </div>
 
-      <Link to="/test-1">Test 1</Link>
-      <Link to="/test-2">Test 2</Link>
+      <Link to="/blog">View Blogs</Link>
     </div>
   );
 }
