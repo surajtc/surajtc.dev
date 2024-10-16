@@ -2,9 +2,6 @@ name = "surajtc-dev"
 compatibility_date = "2024-10-11"
 pages_build_output_dir = "./build/client"
 
-[vars]
-NODE_VERSION=22
-
 [[d1_databases]]
 binding = "DB"
 database_name = "surajtc-dev-db"
