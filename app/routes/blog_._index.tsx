@@ -6,10 +6,14 @@ export default function BlogIndex() {
       <h1>Child Blogs</h1>
       <ul>
         <li>
-          <Link to="test-1">Test-1</Link>
+          <Link to="/blog/test-1" reloadDocument>
+            Test-1
+          </Link>
         </li>
         <li>
-          <Link to="test-2">Test-2</Link>
+          <Link to="/blog/test-2" reloadDocument>
+            Test-2
+          </Link>
         </li>
       </ul>
     </div>
